@@ -1,0 +1,60 @@
+.mainMenu {
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mainMenu ul {
+  width: min(100%, 80rem);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mainMenu li {
+  position: relative;
+  display: flex;
+  width: 5rem;
+  justify-content: center;
+  flex: 1;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+.mainMenu a {
+  color: rgb(90, 90, 90);
+  text-decoration: none;
+}
+
+.mainMenu a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.mainMenu a:hover::before,
+.mainMenu a:active::before,
+.mainMenu a.active::before {
+  background-color: rgba(87, 87, 87, 0.116);
+}
+
+.mainMenu a:active,
+.mainMenu a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.mainMenu a.active {
+  color: rgb(255, 255, 255);
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 780px) {
+  .mainMenu a {
+    font-size: 0.9rem;
+  }
+}

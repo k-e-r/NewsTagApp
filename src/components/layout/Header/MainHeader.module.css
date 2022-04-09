@@ -1,0 +1,13 @@
+.header {
+  height: 5rem;
+  margin: auto;
+  /* border-bottom: 0.2rem solid #ccc; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  z-index: 50;
+  background-color: white;
+}

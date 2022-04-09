@@ -7,7 +7,7 @@ import Entertainment from './pages/Entertainment';
 import Health from './pages/Health';
 import Science from './pages/Science';
 import Sports from './pages/Sports';
-import MainHeader from './components/layout/MainHeader';
+import MainHeader from './components/layout/Header/MainHeader';
 // import Login from './pages/Login';
 // import Mypage from './pages/Mypage';
 

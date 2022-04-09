@@ -1,5 +1,5 @@
 {
-  "pc" : [
+  "wide" : [
     { "path" : "/categories/general", "name" : "Top" },
     { "path" : "/categories/technology", "name" : "Technology" },
     { "path" : "/categories/health", "name" : "Health" },
@@ -8,7 +8,7 @@
     { "path" : "/categories/business", "name" : "Business" },
     { "path" : "/categories/sports", "name" : "Sports" }
   ],
-  "mobile" : [
+  "narrow" : [
     { "path" : "/categories/general", "name" : "01 Top" },
     { "path" : "/categories/technology", "name" : "02 Technology" },
     { "path" : "/categories/health", "name" : "03 Health" },

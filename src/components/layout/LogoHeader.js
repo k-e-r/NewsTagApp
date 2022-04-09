@@ -7,9 +7,8 @@ import CountryContext from '../../store/CountryProvider';
 import countries from '../../lib/countries.json';
 import { ReactComponent as Logo } from '../../assets/bookmark.svg';
 
-const LogoHeader = ({ size }) => {
+const LogoHeader = () => {
   const [country, setCountry] = useState('us');
-  const [menuVisible, setMenuVisible] = useState(false);
 
   const sortCountries = countries.sort((a, b) => {
     if (a.country < b.country) return -1;
@@ -22,16 +21,6 @@ const LogoHeader = ({ size }) => {
   const countryChange = (e) => {
     setCountry(e.target.value);
     countryCtx.setCountry(e.target.value);
-  };
-
-  const clickHandler = () => {
-    if (!menuVisible) {
-      setMenuVisible(true);
-      console.log('on');
-    } else {
-      setMenuVisible(false);
-      console.log('off');
-    }
   };
 
   return (
