@@ -1,20 +1,25 @@
 .header {
   height: 5rem;
   margin: auto;
-  border-bottom: 0.2rem solid #ccc;
+  /* border-bottom: 0.2rem solid #ccc; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  z-index: 50;
+  background-color: white;
 }
 
-.header nav {
+.mainMenu {
   background-color: #ccc;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.header ul {
+.header .mainMenu ul {
   width: min(100%, 80rem);
   list-style: none;
   display: flex;
@@ -22,7 +27,7 @@
   justify-content: space-around;
 }
 
-.header li {
+.header .mainMenu li {
   position: relative;
   display: flex;
   width: 5rem;
@@ -32,12 +37,12 @@
   padding: 0.5rem 0;
 }
 
-.header nav a {
+.mainMenu a {
   color: rgb(90, 90, 90);
   text-decoration: none;
 }
 
-.header nav a::before {
+.mainMenu a::before {
   content: '';
   position: absolute;
   top: 0;
@@ -46,24 +51,173 @@
   width: 100%;
 }
 
-.header nav a:hover::before,
-.header nav a:active::before,
-.header nav a.active::before {
+.mainMenu a:hover::before,
+.mainMenu a:active::before,
+.mainMenu a.active::before {
   background-color: rgba(87, 87, 87, 0.116);
 }
 
-.header nav a:active,
-.header nav a:hover {
+.mainMenu a:active,
+.mainMenu a:hover {
   color: rgb(255, 255, 255);
 }
 
-.header nav a.active {
+.mainMenu a.active {
   color: rgb(255, 255, 255);
   pointer-events: none;
 }
 
-@media only screen and (max-width: 690px) {
-  .header ul {
+.menubtn {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  background-color: #ccc;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.icon {
+  width: 1rem;
+  fill: rgb(90, 90, 90);
+}
+
+.menubtn:hover,
+.menubtn:active {
+  background-color: rgba(87, 87, 87, 0.4);
+  color: rgb(235, 235, 235);
+}
+
+.menubtn:hover .icon,
+.menubtn:active .icon {
+  fill: rgb(235, 235, 235);
+}
+
+.dropdownMenuBox {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.menuOpen {
+  position: absolute;
+  /* top: 2.1rem; */
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease-out;
+}
+
+.menuOpen ul {
+  list-style: none;
+  height: 100%;
+  margin-top: 5rem;
+}
+
+.menuOpen li:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.menuOpen li {
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  animation: slideIn 1s ease-out forwards;
+  position: relative;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+.ModalOpen {
+  animation: openModal 0.4s ease-out forwards;
+}
+
+.ModalClosed {
+  animation: closeModal 1s ease-out forwards;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    /* transform: translateY(60%); */
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+}
+
+.LinkClass::before {
+  content: '\0203a';
+  position: absolute;
+  top: 0.42rem;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
+.LinkClass:hover::before {
+  cursor: pointer;
+  opacity: 1;
+  animation: hoverAnime 1.5s ease-out infinite;
+}
+
+@keyframes hoverAnime {
+  0% {
+    transform: translateX(-5%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-5%);
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .header .mainMenu ul {
     font-size: 0.8rem;
+  }
+
+  .header .mainMenu a {
+    font-size: 0.9rem;
   }
 }

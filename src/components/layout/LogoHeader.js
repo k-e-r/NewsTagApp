@@ -7,8 +7,9 @@ import CountryContext from '../../store/CountryProvider';
 import countries from '../../lib/countries.json';
 import { ReactComponent as Logo } from '../../assets/bookmark.svg';
 
-const LogoHeader = () => {
+const LogoHeader = ({ size }) => {
   const [country, setCountry] = useState('us');
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const sortCountries = countries.sort((a, b) => {
     if (a.country < b.country) return -1;
@@ -23,6 +24,16 @@ const LogoHeader = () => {
     countryCtx.setCountry(e.target.value);
   };
 
+  const clickHandler = () => {
+    if (!menuVisible) {
+      setMenuVisible(true);
+      console.log('on');
+    } else {
+      setMenuVisible(false);
+      console.log('off');
+    }
+  };
+
   return (
     <>
       <div className={classes.flexBox}>
@@ -31,15 +42,14 @@ const LogoHeader = () => {
             <p className={classes.logoName}>News</p>
             <Logo className={classes.logoIcon} />
           </div>
-          {/* <p>SEARCH</p> */}
           <div className={classes.subMenu}>
-            <NavLink
-              activeClassName={classes.active}
-              to='/mypage'
-              className={classes.login}
-            >
-              MY PAGE
-            </NavLink>
+            {/* <NavLink
+                activeClassName={classes.active}
+                to='/mypage'
+                className={classes.login}
+              >
+                MY PAGE
+              </NavLink> */}
             <NavLink
               activeClassName={classes.active}
               to='/login'
