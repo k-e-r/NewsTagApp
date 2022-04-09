@@ -1,0 +1,11 @@
+.tag {
+  position: absolute;
+  z-index: 10;
+  top: 0.5rem;
+  left: 0;
+  width: 3.5rem;
+  fill: rgba(255, 255, 255, 0.863);
+  stroke: rgb(0, 0, 0);
+  stroke-width: 0.5px;
+  cursor: pointer;
+}
