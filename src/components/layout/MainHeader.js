@@ -14,11 +14,6 @@ const MainHeader = () => {
               Top
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink activeClassName={classes.active} to='/categories/business'>
-              Business
-            </NavLink>
-          </li>
           <li>
             <NavLink
               activeClassName={classes.active}
@@ -27,6 +22,12 @@ const MainHeader = () => {
               Technology
             </NavLink>
           </li>
+          <li>
+            <NavLink activeClassName={classes.active} to='/categories/business'>
+              Business
+            </NavLink>
+          </li>
+          {/*
           <li>
             <NavLink
               activeClassName={classes.active}
