@@ -6,7 +6,6 @@ import NarrowHeader from './NarrowHeader';
 
 const MainHeader = () => {
   const { width } = useWindowDimensions();
-  console.log('Main~~~');
 
   return (
     <header className={classes.header}>

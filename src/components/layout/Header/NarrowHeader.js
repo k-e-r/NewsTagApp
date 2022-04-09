@@ -18,7 +18,6 @@ const NarrowHeader = (props) => {
     } else {
       setIsOpen(true);
     }
-    console.log('click', isOpen);
   };
 
   return (
