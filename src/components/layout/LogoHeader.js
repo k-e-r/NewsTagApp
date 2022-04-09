@@ -4,10 +4,17 @@ import { NavLink } from 'react-router-dom';
 import classes from './LogoHeader.module.css';
 
 import CountryContext from '../../store/CountryProvider';
+import countries from '../../lib/countries.json';
 import { ReactComponent as Logo } from '../../assets/bookmark.svg';
 
 const LogoHeader = () => {
   const [country, setCountry] = useState('us');
+
+  const sortCountries = countries.sort((a, b) => {
+    if (a.country < b.country) return -1;
+    else if (a.country > b.country) return 1;
+    return 0;
+  });
 
   const countryCtx = useContext(CountryContext);
 
@@ -41,60 +48,11 @@ const LogoHeader = () => {
               LOGIN
             </NavLink>
             <select value={country} onChange={countryChange}>
-              <option value='us'>USA</option>
-              <option value='ca'>Canada</option>
-              <option value='jp'>Japan</option>
-              <option value='ae'>Emirates</option>
-              <option value='ar'>Argentina</option>
-              <option value='at'>Austria</option>
-              <option value='au'>Australia</option>
-              <option value='be'>Belgium</option>
-              <option value='bg'>Bulgaria</option>
-              <option value='br'>Brazil</option>
-              <option value='ch'>Switzerland</option>
-              <option value='cn'>China</option>
-              <option value='co'>Colombia</option>
-              <option value='cu'>Cuba</option>
-              <option value='cz'>Czechia</option>
-              <option value='de'>Germany</option>
-              <option value='eg'>Egypt</option>
-              <option value='fr'>France</option>
-              <option value='gb'>UK</option>
-              <option value='gr'>Greece</option>
-              <option value='hk'>Hong Kong</option>
-              <option value='hu'>Hungary</option>
-              <option value='id'>Indonesia</option>
-              <option value='ie'>Ireland</option>
-              <option value='il'>Israel</option>
-              <option value='in'>India</option>
-              <option value='it'>Italy</option>
-              <option value='kr'>Korea</option>
-              <option value='lt'>Lithuania</option>
-              <option value='lv'>Latvia</option>
-              <option value='ma'>Morocco</option>
-              <option value='mx'>Mexico</option>
-              <option value='my'>Malaysia</option>
-              <option value='ng'>Nigeria</option>
-              <option value='nl'>Netherlands</option>
-              <option value='no'>Norway</option>
-              <option value='nz'>New Zealand</option>
-              <option value='ph'>Philippines</option>
-              <option value='pl'>Poland</option>
-              <option value='pt'>Portugal</option>
-              <option value='ro'>Romania</option>
-              <option value='rs'>Serbia</option>
-              <option value='ru'>Russia</option>
-              <option value='sa'>Saudi Arabia</option>
-              <option value='se'>Sweden</option>
-              <option value='sg'>Singapore</option>
-              <option value='si'>Slovenia</option>
-              <option value='sk'>Slovakia</option>
-              <option value='th'>Thailand</option>
-              <option value='tr'>Turkey</option>
-              <option value='tw'>Taiwan</option>
-              <option value='ua'>Ukraine</option>
-              <option value='ve'>Venezuela</option>
-              <option value='za'>South Africa</option>
+              {sortCountries.map((data) => (
+                <option key={data.code} value={data.code}>
+                  {data.country}
+                </option>
+              ))}
             </select>
           </div>
         </div>

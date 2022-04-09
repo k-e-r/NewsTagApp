@@ -15,7 +15,7 @@ function App() {
       <main>
         <Switch>
           <Route path='/' exact>
-            <Redirect to='/categories/general/:country' />
+            <Redirect to='/categories/general' />
           </Route>
           <Route path='/categories/general' component={Top} exact />
           <Route path='/categories/general/:country' component={Top} />
