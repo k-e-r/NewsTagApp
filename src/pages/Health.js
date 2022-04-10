@@ -3,6 +3,7 @@ import { Redirect, useParams } from 'react-router-dom';
 
 import CountryContext from '../store/CountryProvider';
 import SetArticles from '../components/SetArticles';
+import SetBookmark from '../components/SetBookmark';
 import countries from '../lib/countries.json';
 
 const Health = () => {
@@ -22,6 +23,7 @@ const Health = () => {
   return (
     <section>
       <SetArticles category={category} country={country} />
+      <SetBookmark />
     </section>
   );
 };

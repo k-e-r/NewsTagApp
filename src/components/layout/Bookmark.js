@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 import ArticlesContext from '../../store/ArticlesProvider';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
 import classes from './Bookmark.module.css';
 import AuthContext from '../../store/AuthProvider';
-import SetBookmark from './SetBookmark';
 
 const Bookmark = ({ article, id }) => {
   const authCtx = useContext(AuthContext);
@@ -21,6 +20,7 @@ const Bookmark = ({ article, id }) => {
     const el = document.getElementById('tag--' + id);
     if (getComputedStyle(el).fill !== 'rgb(251, 255, 0)') {
       el.style.fill = 'rgb(251, 255, 0)';
+      console.log(article);
       articlesCtx.addArticles(article);
     } else {
       el.style.fill = 'rgba(255, 255, 255, 0.863)';

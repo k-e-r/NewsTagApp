@@ -85,6 +85,7 @@ export const getNews = async (country = 'us', category = 'general') => {
 /**
  *
  */
+const firebaseAuthDomain = process.env['REACT_APP_AUTH_FIREBASE_DOMAIN'];
 export async function getSingleUser(usrId) {
   console.log('getSingleUser', usrId);
   const response = await fetch(`${firebaseDomain}/users/${usrId}.json`);
@@ -108,8 +109,8 @@ export async function getSingleUser(usrId) {
   return transformedArticles;
 }
 
-export async function addUserBook(usrId, bookData) {
-  console.log('usrId:', usrId);
+export async function addUserBook(bookData, usrId) {
+  console.log('usrId:', usrId, 'bookData', bookData);
   const response = await fetch(`${firebaseDomain}/users/${usrId}.json`, {
     method: 'POST',
     body: JSON.stringify(bookData),
@@ -125,3 +126,26 @@ export async function addUserBook(usrId, bookData) {
 
   return null;
 }
+
+export const putUserBook = async (bookData, usrId, registerId) => {
+  const response = await fetch(
+    `${firebaseDomain}/users/${usrId}/${registerId}.json`,
+    {
+      method: 'PUT',
+      body: JSON.stringify({
+        data: usrId,
+        articles: bookData,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Could not rewrite categories.');
+  }
+
+  return null;
+};

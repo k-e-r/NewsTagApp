@@ -4,7 +4,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import CountryContext from '../store/CountryProvider';
 import SetArticles from '../components/SetArticles';
 import countries from '../lib/countries.json';
-import SetBookmark from '../components/layout/SetBookmark';
+import SetBookmark from '../components/SetBookmark';
 
 const Top = () => {
   const category = 'general';
