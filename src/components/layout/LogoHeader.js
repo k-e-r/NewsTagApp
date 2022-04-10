@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 
 import classes from './LogoHeader.module.css';
 
@@ -9,13 +9,9 @@ import countries from '../../lib/countries.json';
 import { ReactComponent as Logo } from '../../assets/bookmark.svg';
 
 const LogoHeader = () => {
+  const history = useHistory();
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
-  const logoutHandler = () => {
-    authCtx.logout();
-    // optional: redirect the user
-    <Redirect to='/' />;
-  };
 
   const [country, setCountry] = useState('us');
   const sortCountries = countries.sort((a, b) => {
@@ -23,6 +19,12 @@ const LogoHeader = () => {
     else if (a.country > b.country) return 1;
     return 0;
   });
+
+  const logoutHandler = () => {
+    authCtx.logout();
+    // return <Redirect to={`/categories/general/${country}`} />;
+    history.replace('/categories/general/');
+  };
 
   const countryCtx = useContext(CountryContext);
 
