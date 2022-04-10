@@ -11,6 +11,7 @@ import Sports from './pages/Sports';
 import MainHeader from './components/layout/Header/MainHeader';
 import AuthContext from './store/AuthProvider';
 import Login from './pages/Login';
+import Footer from './components/layout/Footer';
 // import Mypage from './pages/Mypage';
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </>
   );
 }
