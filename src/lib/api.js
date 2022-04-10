@@ -86,6 +86,7 @@ export const getNews = async (country = 'us', category = 'general') => {
  *
  */
 export async function getSingleUser(usrId) {
+  console.log('getSingleUser', usrId);
   const response = await fetch(`${firebaseDomain}/users/${usrId}.json`);
   const data = await response.json();
 
