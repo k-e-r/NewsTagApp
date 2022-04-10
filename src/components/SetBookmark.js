@@ -19,24 +19,23 @@ const SetBookmark = () => {
 
   useEffect(() => {
     console.log('SetBookmark Effect');
-    if (userInfo !== '' && localId !== '' && userArticles !== null) {
-      console.log('deepEqual', deepEqual(userArticles, articles));
-      if (!deepEqual(userArticles, articles)) {
-        putUserBook(articles, localId, userInfo)
-          .then(console.log('put'))
-          .catch((error) => setError('Database Error: ' + error));
-      }
+    console.log('deepEqual', deepEqual(userArticles, articles));
+    if (!deepEqual(userArticles, articles)) {
+      putUserBook(articles, localId, userInfo)
+        .then(console.log('put'))
+        .catch((error) => setError('Database Error: ' + error));
     } else if (userInfo === '' && localId !== '') {
       getSingleUser(localId)
         .then((data) => {
           console.log('data', data);
           if (data.length !== 0) {
-            console.log('data', data, 'id', data[0].id);
             if (data[0].articles !== undefined) {
-              articlesCtx.addArticles(data[0].articles);
+              for (let i = 0; i < data[0].articles.length; i++) {
+                articlesCtx.addArticles(data[0].articles[i]);
+              }
+              userInfoCtx.setUserArticles(data[0].articles);
             }
             userInfoCtx.setUserInfo(data[0].id);
-            console.log('read', data[0].id, 'articles', data[0].articles);
           }
         })
         .catch((error) => setError('DB Error: ' + error));

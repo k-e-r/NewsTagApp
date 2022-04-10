@@ -17,7 +17,6 @@ const LoadFavorite = () => {
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
   const userInfoCtx = useContext(UserInfoContext);
-  console.log('loadedArticles', loadedArticles, 'error', error);
 
   // initで登録データread & set
   useEffect(() => {
@@ -32,7 +31,6 @@ const LoadFavorite = () => {
             setLoadedArticles(data[0].articles);
           }
           userInfoCtx.setUserInfo(data[0].id);
-          console.log('read', data[0].id, 'articles', data[0].articles);
         } else if (!loadData) {
           // user登録
           addUserBook(
@@ -46,7 +44,7 @@ const LoadFavorite = () => {
             .catch((error) => setError('Database Error: ' + error));
           setTimeout(() => {
             setLoadData(true);
-          }, 0);
+          }, 1000);
         }
       })
       .catch((error) => setError('DB Error: ' + error));

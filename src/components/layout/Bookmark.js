@@ -10,11 +10,6 @@ const Bookmark = ({ article, id }) => {
   const isLoggedIn = authCtx.isLoggedIn;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
-  console.log('data', articles);
-  console.log(
-    'findIndex',
-    articles.findIndex((data) => article.url === data.url)
-  );
 
   const settingColor = (id) => {
     const el = document.getElementById('tag--' + id);
