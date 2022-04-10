@@ -43,7 +43,6 @@ const retrieveStoredToken = () => {
 };
 
 export const AuthProvider = (props) => {
-  console.log('auth');
   const tokenData = retrieveStoredToken();
   let initialToken;
   let initialLocalId;

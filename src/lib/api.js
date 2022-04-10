@@ -88,7 +88,7 @@ export const getNews = async (country = 'us', category = 'general') => {
 const firebaseAuthDomain = process.env['REACT_APP_AUTH_FIREBASE_DOMAIN'];
 export async function getSingleUser(usrId) {
   console.log('getSingleUser', usrId);
-  const response = await fetch(`${firebaseDomain}/users/${usrId}.json`);
+  const response = await fetch(`${firebaseAuthDomain}/users/${usrId}.json`);
   const data = await response.json();
 
   if (!response.ok) {
@@ -111,7 +111,7 @@ export async function getSingleUser(usrId) {
 
 export async function addUserBook(bookData, usrId) {
   console.log('usrId:', usrId, 'bookData', bookData);
-  const response = await fetch(`${firebaseDomain}/users/${usrId}.json`, {
+  const response = await fetch(`${firebaseAuthDomain}/users/${usrId}.json`, {
     method: 'POST',
     body: JSON.stringify(bookData),
     headers: {
@@ -129,7 +129,7 @@ export async function addUserBook(bookData, usrId) {
 
 export const putUserBook = async (bookData, usrId, registerId) => {
   const response = await fetch(
-    `${firebaseDomain}/users/${usrId}/${registerId}.json`,
+    `${firebaseAuthDomain}/users/${usrId}/${registerId}.json`,
     {
       method: 'PUT',
       body: JSON.stringify({

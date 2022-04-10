@@ -8,7 +8,6 @@ const ArticlesContext = React.createContext({
 
 const articlesReducer = (state, action) => {
   if (action.type === 'ADD') {
-    console.log('length:', action.articles);
     const existingArticleIndex = state.articles.findIndex(
       (article) => article.url === action.articles.url
     );
@@ -24,7 +23,6 @@ const articlesReducer = (state, action) => {
     } else {
       updatedArticles = [action.articles];
     }
-    console.log('update:', updatedArticles);
 
     return {
       articles: updatedArticles,
@@ -35,12 +33,6 @@ const articlesReducer = (state, action) => {
 
     updatedArticles = state.articles.filter(
       (article) => article.url !== action.articles.url
-    );
-    console.log(
-      'updatedArticles',
-      updatedArticles,
-      'state.articles',
-      state.articles
     );
 
     return {

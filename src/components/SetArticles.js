@@ -11,8 +11,6 @@ const SetArticles = ({ category, country }) => {
   const [registerDB, setRegisterDB] = useState(false);
   const [articlesId, setArticlesId] = useState('');
 
-  console.log('error:', error);
-
   // データ受領後、再レンダリングされるため、
   // JSX共有可能
   useEffect(() => {

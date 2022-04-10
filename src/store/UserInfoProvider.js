@@ -12,12 +12,10 @@ export const UserInfoProvider = (props) => {
   const [userArticles, setUserArticles] = useState([]);
 
   const changeUserInfoHandler = (userInfo) => {
-    console.log('user set', userInfo);
     setUserInfo(userInfo);
   };
 
   const setUserArticlesHandler = (articles) => {
-    console.log('article set');
     setUserArticles([articles]);
   };
 
