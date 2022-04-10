@@ -8,7 +8,7 @@ import Health from './pages/Health';
 import Science from './pages/Science';
 import Sports from './pages/Sports';
 import MainHeader from './components/layout/Header/MainHeader';
-// import Login from './pages/Login';
+import Login from './pages/Login';
 // import Mypage from './pages/Mypage';
 
 function App() {
@@ -44,8 +44,8 @@ function App() {
           <Route path='/categories/science/:country' component={Science} />
           <Route path='/categories/sports' component={Sports} exact />
           <Route path='/categories/sports/:country' component={Sports} />
-          {/*
           <Route path='/login' component={Login} />
+          {/*
           <Route path='/mypage' component={Mypage} /> */}
         </Switch>
       </main>

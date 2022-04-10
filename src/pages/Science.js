@@ -10,8 +10,11 @@ const Science = () => {
   const { country } = useContext(CountryContext);
   const params = useParams();
   const result = countries.some((data) => data.code === params.country);
+
   if (!result) {
-    return <Redirect to='/categories/science/us' />;
+    return <Redirect to={`/categories/${category}/us`} />;
+  } else if (country !== params.country) {
+    return <Redirect to={`/categories/${category}/${country}`} />;
   }
 
   return (

@@ -3,13 +3,16 @@ import { useContext, useEffect } from 'react';
 import ArticlesContext from '../../store/ArticlesProvider';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
 import classes from './Bookmark.module.css';
+import AuthContext from '../../store/AuthProvider';
 
 const Bookmark = ({ article, id }) => {
+  const authCtx = useContext(AuthContext);
+  const isLoggedIn = authCtx.isLoggedIn;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
 
   useEffect(() => {
-    console.log('articles', articles);
+    // console.log('articles', articles);
   }, [articles]);
 
   const settingColor = (id) => {
@@ -33,13 +36,17 @@ const Bookmark = ({ article, id }) => {
 
   return (
     <>
-      <TagIcon
-        id={`tag--${article.url}`}
-        className={`${classes.tag} tag--${article.url}`}
-        onClick={() => clickHandler(article, id)}
-      />
-      {articles.findIndex((data) => article.title === data.title) !== -1 &&
-        settingColor(id)}
+      {isLoggedIn && (
+        <>
+          <TagIcon
+            id={`tag--${article.url}`}
+            className={`${classes.tag} tag--${article.url}`}
+            onClick={() => clickHandler(article, id)}
+          />
+          {articles.findIndex((data) => article.title === data.title) !== -1 &&
+            settingColor(id)}
+        </>
+      )}
     </>
   );
 };

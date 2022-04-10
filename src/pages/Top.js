@@ -10,10 +10,13 @@ const Top = () => {
   const { country } = useContext(CountryContext);
   const params = useParams();
   const result = countries.some((data) => data.code === params.country);
+
   // history.pushでの遷移時下記Warningが出たため、Redirectに変更
   // Warning: Cannot update during an existing state transition (such as within `render`). Render methods should be a pure function of props and state.
   if (!result) {
-    return <Redirect to='/categories/general/us' />;
+    return <Redirect to={`/categories/${category}/us`} />;
+  } else if (country !== params.country) {
+    return <Redirect to={`/categories/${category}/${country}`} />;
   }
 
   console.log('Top', country);

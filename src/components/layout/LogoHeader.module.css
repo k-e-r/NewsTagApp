@@ -34,17 +34,33 @@
 }
 
 .subMenu {
-  width: 10rem;
+  width: 18rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   color: rgb(90, 90, 90);
   font-size: 0.8rem;
 }
 
+.login {
+  margin-right: 1rem;
+  color: rgb(90, 90, 90);
+}
+
+.subMenu button {
+  margin-right: 1rem;
+  border: none;
+  background-color: white;
+  font-size: inherit;
+  color: rgb(90, 90, 90);
+  cursor: pointer;
+}
+
 .login:hover,
 .login:active,
-.login.active {
+.login.active,
+.subMenu button:hover,
+.subMenu button:active {
   color: rgb(168, 168, 168);
 }
 

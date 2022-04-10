@@ -10,8 +10,11 @@ const Health = () => {
   const { country } = useContext(CountryContext);
   const params = useParams();
   const result = countries.some((data) => data.code === params.country);
+
   if (!result) {
-    return <Redirect to='/categories/health/us' />;
+    return <Redirect to={`/categories/${category}/us`} />;
+  } else if (country !== params.country) {
+    return <Redirect to={`/categories/${category}/${country}`} />;
   }
 
   return (
