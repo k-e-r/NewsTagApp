@@ -14,7 +14,7 @@ const LogoHeader = () => {
   const logoutHandler = () => {
     authCtx.logout();
     // optional: redirect the user
-    return <Redirect to='/' />;
+    <Redirect to='/' />;
   };
 
   const [country, setCountry] = useState('us');

@@ -23,11 +23,12 @@ const LoadFavorite = () => {
   useEffect(() => {
     getSingleUser(localId)
       .then((data) => {
-        console.log('data', data);
         if (data.length !== 0) {
-          console.log('data', data, 'id', data[0].id);
           if (data[0].articles !== undefined) {
-            articlesCtx.addArticles(data[0].articles);
+            for (let i = 0; i < data[0].articles.length; i++) {
+              articlesCtx.addArticles(data[0].articles[i]);
+            }
+            userInfoCtx.setUserArticles(data[0].articles);
             setLoadedArticles(data[0].articles);
           }
           userInfoCtx.setUserInfo(data[0].id);
@@ -55,6 +56,7 @@ const LoadFavorite = () => {
     <section>
       {error === '' && loadedArticles.length !== 0 && (
         <Card articles={loadedArticles} />
+        // <p className={classes.mypage}>CARD~</p>
       )}
       {error === '' && loadedArticles.length === 0 && (
         <>

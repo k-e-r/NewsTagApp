@@ -10,6 +10,11 @@ const Bookmark = ({ article, id }) => {
   const isLoggedIn = authCtx.isLoggedIn;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
+  console.log('data', articles);
+  console.log(
+    'findIndex',
+    articles.findIndex((data) => article.url === data.url)
+  );
 
   const settingColor = (id) => {
     const el = document.getElementById('tag--' + id);
@@ -20,10 +25,10 @@ const Bookmark = ({ article, id }) => {
     const el = document.getElementById('tag--' + id);
     if (getComputedStyle(el).fill !== 'rgb(251, 255, 0)') {
       el.style.fill = 'rgb(251, 255, 0)';
-      console.log(article);
       articlesCtx.addArticles(article);
     } else {
       el.style.fill = 'rgba(255, 255, 255, 0.863)';
+      console.log('remove');
       articlesCtx.removeArticles(article);
     }
   };
@@ -40,7 +45,7 @@ const Bookmark = ({ article, id }) => {
             className={`${classes.tag} tag--${article.url}`}
             onClick={() => clickHandler(article, id)}
           />
-          {articles.findIndex((data) => article.title === data.title) !== -1 &&
+          {articles.findIndex((data) => article.url === data.url) !== -1 &&
             settingColor(id)}
           {/* <SetBookmark /> */}
         </>

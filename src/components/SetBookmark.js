@@ -5,23 +5,27 @@ import AuthContext from '../store/AuthProvider';
 import UserInfoContext from '../store/UserInfoProvider';
 import { getSingleUser, addUserBook, putUserBook } from '../lib/api';
 
+var deepEqual = require('deep-equal');
+
 const SetBookmark = () => {
   const authCtx = useContext(AuthContext);
   const localId = authCtx.localId;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
   const userInfoCtx = useContext(UserInfoContext);
-  const { userInfo } = userInfoCtx;
+  const { userInfo, userArticles } = userInfoCtx;
   const [error, setError] = useState('');
   console.log('userInfo', userInfo);
 
   useEffect(() => {
     console.log('SetBookmark Effect');
-    if (userInfo !== '' && localId !== '') {
-      console.log('articles', articles);
-      putUserBook(articles, localId, userInfo)
-        .then(console.log('put'))
-        .catch((error) => setError('Database Error: ' + error));
+    if (userInfo !== '' && localId !== '' && userArticles !== null) {
+      console.log('deepEqual', deepEqual(userArticles, articles));
+      if (!deepEqual(userArticles, articles)) {
+        putUserBook(articles, localId, userInfo)
+          .then(console.log('put'))
+          .catch((error) => setError('Database Error: ' + error));
+      }
     } else if (userInfo === '' && localId !== '') {
       getSingleUser(localId)
         .then((data) => {

@@ -11,7 +11,6 @@ const SetArticles = ({ category, country }) => {
   const [registerDB, setRegisterDB] = useState(false);
   const [articlesId, setArticlesId] = useState('');
 
-  console.log('SetArticles', loadedArticles);
   console.log('error:', error);
 
   // データ受領後、再レンダリングされるため、
@@ -27,12 +26,13 @@ const SetArticles = ({ category, country }) => {
     if (loadedArticles.length === 0 && attrData !== '') {
       getSingleArticle(attrData)
         .then((data) => {
-          setLoadedArticles(data[0].articles);
           // もし日付が古いならData上書き指示
           if (!DataCheck(data[0].date)) {
             // PUT用にデータセット
             setArticlesId(data[0].id);
             setError('overwriting');
+          } else {
+            setLoadedArticles(data[0].articles);
           }
         })
         .catch((error) => setError('Database Error: ' + error));
@@ -44,6 +44,7 @@ const SetArticles = ({ category, country }) => {
     // 自己エラー時は無視
     // 上書き
     if (!error.match(/NewsAPI/) && error !== '') {
+      console.log('getNews');
       getNews(country, category)
         .then((data) => {
           setLoadedArticles(data);

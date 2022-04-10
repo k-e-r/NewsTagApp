@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 
 const UserInfoContext = React.createContext({
   userInfo: '',
+  userArticles: null,
   setUserInfo: (id) => {},
+  setUserArticles: (articles) => {},
 });
 
 export const UserInfoProvider = (props) => {
   const [userInfo, setUserInfo] = useState('');
+  const [userArticles, setUserArticles] = useState([]);
 
   const changeUserInfoHandler = (userInfo) => {
     console.log('user set', userInfo);
     setUserInfo(userInfo);
   };
 
+  const setUserArticlesHandler = (articles) => {
+    console.log('article set');
+    setUserArticles([articles]);
+  };
+
   const settingContext = {
     userInfo: userInfo,
+    userArticles: userArticles,
     setUserInfo: changeUserInfoHandler,
+    setUserArticles: setUserArticlesHandler,
   };
 
   return (

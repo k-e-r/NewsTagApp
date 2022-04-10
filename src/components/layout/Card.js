@@ -29,6 +29,7 @@ const Card = ({ articles }) => {
 
   // Skeleton無効化
   const imageLoadedHandler = (idx) => {
+    console.log('idxOK', idx);
     i = i + 1;
     setImage[idx] = true;
     setImageState(i);
@@ -70,7 +71,9 @@ const Card = ({ articles }) => {
                 </div>
                 <div className={classes.text}>
                   <h3>{article.title}</h3>
-                  <p className={classes.source}>{article.source.name}</p>
+                  {article.source && article.source.name && (
+                    <p className={classes.source}>{article.source.name}</p>
+                  )}
                   <p>{article.description}</p>
                 </div>
               </a>

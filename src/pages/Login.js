@@ -63,7 +63,7 @@ const Login = () => {
           new Date().getTime() + +data.expiresIn * 1000
         );
         authCtx.login(data.idToken, expirationTime.toISOString(), data.localId);
-        history.replace('/');
+        history.replace('/mypage');
       })
       .catch((err) => {
         alert(err.message);
