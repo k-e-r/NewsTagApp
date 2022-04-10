@@ -11,6 +11,7 @@ import Sports from './pages/Sports';
 import MainHeader from './components/layout/Header/MainHeader';
 import AuthContext from './store/AuthProvider';
 import Login from './pages/Login';
+import Mypage from './pages/Mypage';
 import Footer from './components/layout/Footer';
 // import Mypage from './pages/Mypage';
 
@@ -49,8 +50,7 @@ function App() {
           <Route path='/categories/sports' component={Sports} exact />
           <Route path='/categories/sports/:country' component={Sports} />
           {!authCtx.isLoggedIn && <Route path='/login' component={Login} />}
-          {/*
-          <Route path='/mypage' component={Mypage} /> */}
+          {authCtx.isLoggedIn && <Route path='/mypage' component={Mypage} />}
           <Route path='*'>
             <Redirect to='/' />
           </Route>
