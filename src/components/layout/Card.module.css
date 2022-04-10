@@ -35,12 +35,23 @@
   display: flex;
   width: 50%;
   overflow: hidden;
+  align-items: center;
 }
 
 .article img {
   width: 100%;
   object-fit: cover;
   transition-duration: 0.3s;
+  object-position: center 30%;
+  /* height: 22rem; */
+}
+
+.articles li:first-child img {
+  height: 30rem;
+}
+
+.articles li:not(:first-child) img {
+  height: 19rem;
 }
 
 .article a:hover img {

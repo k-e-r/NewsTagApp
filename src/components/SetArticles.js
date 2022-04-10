@@ -12,6 +12,7 @@ const SetArticles = ({ category, country }) => {
   const [articlesId, setArticlesId] = useState('');
 
   console.log('SetArticles');
+  console.log('error:', error);
 
   // データ受領後、再レンダリングされるため、
   // JSX共有可能

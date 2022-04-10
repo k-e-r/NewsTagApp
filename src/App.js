@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Top from './pages/Top';
@@ -8,10 +9,12 @@ import Health from './pages/Health';
 import Science from './pages/Science';
 import Sports from './pages/Sports';
 import MainHeader from './components/layout/Header/MainHeader';
+import AuthContext from './store/AuthProvider';
 import Login from './pages/Login';
 // import Mypage from './pages/Mypage';
 
 function App() {
+  const authCtx = useContext(AuthContext);
   return (
     <>
       <MainHeader />
@@ -44,9 +47,12 @@ function App() {
           <Route path='/categories/science/:country' component={Science} />
           <Route path='/categories/sports' component={Sports} exact />
           <Route path='/categories/sports/:country' component={Sports} />
-          <Route path='/login' component={Login} />
+          {!authCtx.isLoggedIn && <Route path='/login' component={Login} />}
           {/*
           <Route path='/mypage' component={Mypage} /> */}
+          <Route path='*'>
+            <Redirect to='/' />
+          </Route>
         </Switch>
       </main>
     </>

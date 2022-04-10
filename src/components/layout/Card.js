@@ -15,12 +15,13 @@ let i = 0;
 
 const Card = ({ articles }) => {
   const [imageState, setImageState] = useState(0);
+  // const check = articles.filter((data) => data.urlToImage !== undefined);
 
   console.log('Card');
 
   useEffect(() => {
     // reset
-    if (imageState === articles.length - 1) {
+    if (imageState === articles.length) {
       setImage = Array(ARTICLES_LENGTH).fill(false);
       i = 0;
     }
@@ -28,8 +29,15 @@ const Card = ({ articles }) => {
 
   // Skeleton無効化
   const imageLoadedHandler = (idx) => {
+    i = i + 1;
     setImage[idx] = true;
-    setImageState(i++);
+    setImageState(i);
+  };
+
+  const imageErrorHandler = (url, idx) => {
+    document.getElementById('img--' + url).src = `${notImage}`;
+
+    setImage[idx] = true;
   };
 
   return (
@@ -45,9 +53,11 @@ const Card = ({ articles }) => {
                     <>
                       {!setImage[idx] && <Skeleton height={420} width={1000} />}
                       <img
+                        id={`img--${article.url}`}
                         src={article.urlToImage}
                         alt={article.title}
                         onLoad={() => imageLoadedHandler(idx)}
+                        onError={() => imageErrorHandler(article.url, idx)}
                       />
                     </>
                   ) : (

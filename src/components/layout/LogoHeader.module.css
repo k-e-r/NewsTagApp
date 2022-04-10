@@ -44,6 +44,7 @@
 
 .login {
   margin-right: 1rem;
+  /* line-height: 0.9rem; */
   color: rgb(90, 90, 90);
 }
 
@@ -54,6 +55,7 @@
   font-size: inherit;
   color: rgb(90, 90, 90);
   cursor: pointer;
+  font-family: inherit;
 }
 
 .login:hover,

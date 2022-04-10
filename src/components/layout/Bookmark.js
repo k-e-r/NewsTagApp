@@ -4,6 +4,7 @@ import ArticlesContext from '../../store/ArticlesProvider';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
 import classes from './Bookmark.module.css';
 import AuthContext from '../../store/AuthProvider';
+import SetBookmark from './SetBookmark';
 
 const Bookmark = ({ article, id }) => {
   const authCtx = useContext(AuthContext);
@@ -41,6 +42,7 @@ const Bookmark = ({ article, id }) => {
           />
           {articles.findIndex((data) => article.title === data.title) !== -1 &&
             settingColor(id)}
+          {/* <SetBookmark /> */}
         </>
       )}
     </>

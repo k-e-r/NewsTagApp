@@ -9,7 +9,9 @@ const Health = () => {
   const category = 'health';
   const { country } = useContext(CountryContext);
   const params = useParams();
-  const result = countries.some((data) => data.code === params.country);
+  console.log('country:', country);
+  console.log('params:', params.country);
+  const result = countries.some((data) => data.code === country);
 
   if (!result) {
     return <Redirect to={`/categories/${category}/us`} />;

@@ -6,6 +6,7 @@ import App from './App';
 import { AuthProvider } from './store/AuthProvider';
 import { CountryProvider } from './store/CountryProvider';
 import { ArticlesProvider } from './store/ArticlesProvider';
+import ScrollToTop from './hooks/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <CountryProvider>
       <ArticlesProvider>
         <BrowserRouter>
-          <App />
+          <ScrollToTop>
+            <App />
+          </ScrollToTop>
         </BrowserRouter>
       </ArticlesProvider>
     </CountryProvider>

@@ -40,13 +40,6 @@ const LogoHeader = () => {
             <Logo className={classes.logoIcon} />
           </div>
           <div className={classes.subMenu}>
-            {/* <NavLink
-                activeClassName={classes.active}
-                to='/mypage'
-                className={classes.login}
-              >
-                MY PAGE
-              </NavLink> */}
             {!isLoggedIn && (
               <NavLink
                 activeClassName={classes.active}
