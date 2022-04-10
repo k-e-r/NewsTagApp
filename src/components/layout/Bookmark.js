@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import ArticlesContext from '../../store/ArticlesProvider';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
@@ -10,10 +10,6 @@ const Bookmark = ({ article, id }) => {
   const isLoggedIn = authCtx.isLoggedIn;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
-
-  useEffect(() => {
-    // console.log('articles', articles);
-  }, [articles]);
 
   const settingColor = (id) => {
     const el = document.getElementById('tag--' + id);
