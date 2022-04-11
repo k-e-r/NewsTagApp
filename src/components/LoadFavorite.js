@@ -47,7 +47,7 @@ const LoadFavorite = () => {
               },
               localId
             )
-              .then(console.log('register'))
+              .then()
               .catch((error) => setError('Database Error: ' + error));
             setTimeout(() => {
               setLoadData(true);

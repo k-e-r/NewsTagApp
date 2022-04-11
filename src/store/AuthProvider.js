@@ -69,7 +69,6 @@ export const AuthProvider = (props) => {
   }, []);
 
   const loginHandler = (token, expirationTime, localId) => {
-    console.log('save');
     setToken(token);
     setLocalId(localId);
     localStorage.setItem('token', token);

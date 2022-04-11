@@ -40,7 +40,7 @@ const SetBookmark = () => {
       // かつlocalで更新があった場合
       if (!deepEqual(userArticles, articles)) {
         putUserBook(articles, localId, userInfo)
-          .then(console.log('put'))
+          .then()
           .catch((error) => setError('Database Error: ' + error));
 
         setTimeout(() => {
