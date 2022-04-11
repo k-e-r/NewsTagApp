@@ -1,7 +1,7 @@
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import classes from './layout/Card.module.css';
+import classes from '../layout/Card.module.css';
 
 const Loading = () => {
   // for loading window

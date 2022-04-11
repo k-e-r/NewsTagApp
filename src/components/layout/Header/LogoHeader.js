@@ -3,10 +3,10 @@ import { NavLink, useHistory, Link } from 'react-router-dom';
 
 import classes from './LogoHeader.module.css';
 
-import CountryContext from '../../store/CountryProvider';
-import AuthContext from '../../store/AuthProvider';
-import countries from '../../lib/countries_gnews.json';
-import { ReactComponent as Logo } from '../../assets/bookmark.svg';
+import CountryContext from '../../../store/CountryProvider';
+import AuthContext from '../../../store/AuthProvider';
+import countries from '../../../lib/countries_gnews.json';
+import { ReactComponent as Logo } from '../../../assets/bookmark.svg';
 
 const LogoHeader = () => {
   const history = useHistory();

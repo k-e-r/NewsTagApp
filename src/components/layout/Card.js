@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import Loading from '../Loading';
+import Loading from '../function/Loading';
 import Bookmark from './Bookmark';
 import notImage from '../../assets/image-not-found-scaled.jpg';
 import classes from './Card.module.css';
@@ -65,11 +65,11 @@ const Card = ({ articles, source = '' }) => {
           articles.map((article, idx) => (
             <li className={classes.article} key={article.title}>
               <Bookmark article={article} source={source} id={article.url} />
-              <a href={article.url}>
+              <a href={article.url} target='_blank' rel='noopener noreferrer'>
                 <div className={classes.imageContainer}>
                   {article.image ? (
                     <>
-                      {!setImage[idx] && <Skeleton height={480} width={1000} />}
+                      {!setImage[idx] && <Skeleton height={420} width={1000} />}
                       {!setImage[idx] && source !== 'mypage' && (
                         <Skeleton height={420} width={1000} />
                       )}

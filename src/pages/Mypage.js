@@ -1,11 +1,9 @@
-import LoadFavorite from '../components/LoadFavorite';
-// import SetBookmark from '../components/SetBookmark';
+import LoadFavorite from '../components/function/LoadFavorite';
 
 const Mypage = () => {
   return (
     <section>
       <LoadFavorite />
-      {/* <SetBookmark /> */}
     </section>
   );
 };

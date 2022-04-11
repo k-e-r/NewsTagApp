@@ -23,11 +23,6 @@ const Bookmark = ({ article, id, source = '' }) => {
     }
   }, [source]);
 
-  const settingColor = (id) => {
-    const el = document.getElementById('tag--' + id);
-    if (el !== null) el.style.fill = 'rgb(251, 255, 0)';
-  };
-
   const clickHandler = (article, id) => {
     const el = document.getElementById('tag--' + id);
     if (getComputedStyle(el).fill !== 'rgb(251, 255, 0)') {

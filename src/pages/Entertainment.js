@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
 import CountryContext from '../store/CountryProvider';
-import SetArticles from '../components/SetArticles';
-import SetBookmark from '../components/SetBookmark';
+import SetArticles from '../components/function/SetArticles';
+import SetBookmark from '../components/function/SetBookmark';
 import countries from '../lib/countries_gnews.json';
 
 const Entertainment = () => {

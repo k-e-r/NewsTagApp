@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { getNews, getSingleArticle, addArticle, putArticle } from '../lib/api';
-import { DataCheck } from '../lib/date-check';
-import Card from './layout/Card';
+import {
+  getNews,
+  getSingleArticle,
+  addArticle,
+  putArticle,
+} from '../../lib/api';
+import { DataCheck } from '../../lib/date-check';
+import Card from '../layout/Card';
 
 const SetArticles = ({ category, country }) => {
   const [attrData, setAttrData] = useState('');

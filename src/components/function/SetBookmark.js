@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 
-import ArticlesContext from '../store/ArticlesProvider';
-import AuthContext from '../store/AuthProvider';
-import UserInfoContext from '../store/UserInfoProvider';
-import { getSingleUser, putUserBook } from '../lib/api';
+import ArticlesContext from '../../store/ArticlesProvider';
+import AuthContext from '../../store/AuthProvider';
+import UserInfoContext from '../../store/UserInfoProvider';
+import { getSingleUser, putUserBook } from '../../lib/api';
 
 let deepEqual = require('deep-equal');
 

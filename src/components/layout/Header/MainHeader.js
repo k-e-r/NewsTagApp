@@ -1,4 +1,4 @@
-import LogoHeader from '../LogoHeader';
+import LogoHeader from './LogoHeader';
 import classes from './MainHeader.module.css';
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 import WideHeader from './WideHeader';

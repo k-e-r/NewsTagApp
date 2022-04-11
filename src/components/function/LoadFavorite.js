@@ -1,11 +1,11 @@
 import { useEffect, useContext, useState } from 'react';
 
-import { getSingleUser, addUserBook } from '../lib/api';
-import Card from './layout/Card';
+import { getSingleUser, addUserBook } from '../../lib/api';
+import Card from '../layout/Card';
 import SetBookmark from './SetBookmark';
-import AuthContext from '../store/AuthProvider';
-import ArticlesContext from '../store/ArticlesProvider';
-import UserInfoContext from '../store/UserInfoProvider';
+import AuthContext from '../../store/AuthProvider';
+import ArticlesContext from '../../store/ArticlesProvider';
+import UserInfoContext from '../../store/UserInfoProvider';
 import classes from './LoadFavorite.module.css';
 
 const LoadFavorite = () => {
