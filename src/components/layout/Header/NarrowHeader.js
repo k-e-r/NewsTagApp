@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import classes from './NarrowHeader.module.css';
 import pages from '../../../lib/pages.json';
 import { ReactComponent as ChevronDown } from '../../../assets/chevron-down.svg';
+import { ReactComponent as ChevronUp } from '../../../assets/chevron-up.svg';
 
 const NarrowHeader = (props) => {
   const [isOpen, setIsOpen] = useState(props.val);
@@ -24,7 +25,10 @@ const NarrowHeader = (props) => {
     <>
       <button className={classes.menubtn} onClick={clickHandler}>
         Category list
-        <ChevronDown className={classes.icon} />
+        {(isOpen === null || isOpen === false) && (
+          <ChevronUp className={classes.icon} />
+        )}
+        {isOpen === true && <ChevronDown className={classes.icon} />}
       </button>
       <div className={classes.dropdownMenuBox}>
         {isOpen === null && (

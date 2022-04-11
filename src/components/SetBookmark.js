@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import ArticlesContext from '../store/ArticlesProvider';
 import AuthContext from '../store/AuthProvider';
 import UserInfoContext from '../store/UserInfoProvider';
-import { getSingleUser, addUserBook, putUserBook } from '../lib/api';
+import { getSingleUser, putUserBook } from '../lib/api';
 
 let deepEqual = require('deep-equal');
 
@@ -45,11 +45,9 @@ const SetBookmark = () => {
 
         setTimeout(() => {
           setLoadData(true);
-          console.log('delay');
         }, 500);
       }
     } else if (userInfo === '' && localId !== '') {
-      console.log('setbookmark');
       // Login後、Serverデータloadしていない場合
       getSingleUser(localId)
         .then((data) => {

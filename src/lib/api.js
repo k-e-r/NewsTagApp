@@ -87,7 +87,6 @@ export const getNews = async (country = 'us', category = 'general') => {
  */
 const firebaseAuthDomain = process.env['REACT_APP_AUTH_FIREBASE_DOMAIN'];
 export async function getSingleUser(usrId) {
-  console.log('getSingleUser', usrId);
   const response = await fetch(`${firebaseAuthDomain}/users/${usrId}.json`);
   const data = await response.json();
 

@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, Link } from 'react-router-dom';
 
 import classes from './LogoHeader.module.css';
 
@@ -38,8 +38,10 @@ const LogoHeader = () => {
       <div className={classes.flexBox}>
         <div className={classes.logoBar}>
           <div className={classes.logo}>
-            <p className={classes.logoName}>News</p>
-            <Logo className={classes.logoIcon} />
+            <Link to='/categories/general'>
+              <p className={classes.logoName}>News</p>
+              <Logo className={classes.logoIcon} />
+            </Link>
           </div>
           <div className={classes.subMenu}>
             {!isLoggedIn && (

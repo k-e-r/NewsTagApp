@@ -8,8 +8,6 @@ import ArticlesContext from '../store/ArticlesProvider';
 import UserInfoContext from '../store/UserInfoProvider';
 import classes from './LoadFavorite.module.css';
 
-let deepEqual = require('deep-equal');
-
 const LoadFavorite = () => {
   const [error, setError] = useState('');
   const [loadedArticles, setLoadedArticles] = useState([]);
@@ -21,15 +19,9 @@ const LoadFavorite = () => {
   const { articles } = articlesCtx;
   const userInfoCtx = useContext(UserInfoContext);
   const { userInfo, userArticles } = userInfoCtx;
-  const [renderFlg, setRenderFlg] = useState(false);
-
-  // console.log('articles:', articles);
-  // console.log('loadedArticles', loadedArticles);
 
   useEffect(() => {
-    console.log('rewrite', articles);
     setLoadedArticles(articles);
-    setRenderFlg(!renderFlg);
   }, [articles]);
 
   // initで登録データcheck & set
@@ -38,7 +30,6 @@ const LoadFavorite = () => {
       getSingleUser(localId)
         .then((data) => {
           if (data.length !== 0) {
-            console.log('already register');
             // if (data[0].articles !== undefined) {
             //   for (let i = 0; i < data[0].articles.length; i++) {
             //     articlesCtx.addArticles(data[0].articles[i]);
@@ -65,7 +56,6 @@ const LoadFavorite = () => {
         })
         .catch((error) => setError('DB Error: ' + error));
     } else {
-      console.log('set data', userArticles);
       setLoadedArticles(userArticles);
     }
   }, [loadData, userInfo]);
