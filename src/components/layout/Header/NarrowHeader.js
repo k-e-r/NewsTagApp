@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import classes from './NarrowHeader.module.css';
-import pages from '../../../lib/pages.json';
+import pages from '../../../lib/pages_gnews.json';
 import { ReactComponent as ChevronDown } from '../../../assets/chevron-down.svg';
 import { ReactComponent as ChevronUp } from '../../../assets/chevron-up.svg';
 

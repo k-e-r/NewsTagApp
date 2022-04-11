@@ -62,18 +62,19 @@ const LoadFavorite = () => {
 
   return (
     <section>
-      {error === '' && (
+      {error === '' && loadedArticles.length !== 0 && (
         <>
           <Card articles={loadedArticles} source='mypage' />
           <SetBookmark />
         </>
       )}
-      {error === '' && loadedArticles === null && (
+      {error === '' && loadedArticles.length === 0 && (
         <>
           <p className={classes.mypage}>
             Bookmark does not seem to have been done yet.
           </p>
           <p className={classes.mypage}>Please bookmark some pages you like.</p>
+          <SetBookmark />
         </>
       )}
       {error !== '' && (

@@ -65,12 +65,15 @@ export const putArticle = async (articleData, attrData, articleId) => {
 /**
  *
  */
-export const getNews = async (country = 'us', category = 'general') => {
+export const getNews = async (country = 'us', category = 'breaking-news') => {
   const apiKey = process.env['REACT_APP_KEY'];
   const endpoint = process.env['REACT_APP_ENDPOINT'];
 
+  // const response = await fetch(
+  //   `${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`
+  // );
   const response = await fetch(
-    `${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`
+    `${endpoint}?topic=${category}&country=${country}&max=20&token=${apiKey}`
   );
   const data = await response.json();
 

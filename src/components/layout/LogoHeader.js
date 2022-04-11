@@ -5,7 +5,7 @@ import classes from './LogoHeader.module.css';
 
 import CountryContext from '../../store/CountryProvider';
 import AuthContext from '../../store/AuthProvider';
-import countries from '../../lib/countries.json';
+import countries from '../../lib/countries_gnews.json';
 import { ReactComponent as Logo } from '../../assets/bookmark.svg';
 
 const LogoHeader = () => {
@@ -23,7 +23,7 @@ const LogoHeader = () => {
   const logoutHandler = () => {
     authCtx.logout();
     // return <Redirect to={`/categories/general/${country}`} />;
-    history.replace('/categories/general/');
+    history.replace('/categories/breaking-news/');
   };
 
   const countryCtx = useContext(CountryContext);
@@ -38,7 +38,7 @@ const LogoHeader = () => {
       <div className={classes.flexBox}>
         <div className={classes.logoBar}>
           <div className={classes.logo}>
-            <Link to='/categories/general'>
+            <Link to='/categories/breaking-news'>
               <p className={classes.logoName}>News</p>
               <Logo className={classes.logoIcon} />
             </Link>

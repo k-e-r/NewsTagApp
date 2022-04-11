@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 import classes from './WideHeader.module.css';
-import pages from '../../../lib/pages.json';
+import pages from '../../../lib/pages_gnews.json';
 
 const WideHeader = () => {
   return (

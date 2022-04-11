@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import ArticlesContext from '../../store/ArticlesProvider';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
@@ -13,6 +13,16 @@ const Bookmark = ({ article, id, source = '' }) => {
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
 
+  useEffect(() => {
+    if (source === 'mypage') {
+      const el = document.getElementById('tag--' + id);
+      if (el !== null) el.style.fill = 'rgb(251, 255, 0)';
+    } else if (articles.findIndex((data) => article.url === data.url) !== -1) {
+      const el = document.getElementById('tag--' + id);
+      if (el !== null) el.style.fill = 'rgb(251, 255, 0)';
+    }
+  }, [source]);
+
   const settingColor = (id) => {
     const el = document.getElementById('tag--' + id);
     if (el !== null) el.style.fill = 'rgb(251, 255, 0)';
@@ -25,7 +35,7 @@ const Bookmark = ({ article, id, source = '' }) => {
         articlesCtx.addArticles(article);
         setTimeout(() => {
           el.style.fill = 'rgb(251, 255, 0)';
-        }, 500);
+        }, 200);
       } else {
         alert('Sorry, bookmark is limited to 20 articles.');
       }
@@ -59,9 +69,8 @@ const Bookmark = ({ article, id, source = '' }) => {
             className={`${classes.tag} tag--${article.url}`}
             onClick={() => clickHandler(article, id)}
           />
-          {source === 'mypage' && settingColor(id)}
-          {articles.findIndex((data) => article.url === data.url) !== -1 &&
-            settingColor(id)}
+          {/* {articles.findIndex((data) => article.url === data.url) !== -1 &&
+            settingColor(id)} */}
           {/* <SetBookmark /> */}
         </>
       )}

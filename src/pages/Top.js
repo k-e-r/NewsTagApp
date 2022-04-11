@@ -3,11 +3,12 @@ import { Redirect, useParams } from 'react-router-dom';
 
 import CountryContext from '../store/CountryProvider';
 import SetArticles from '../components/SetArticles';
-import countries from '../lib/countries.json';
+import countries from '../lib/countries_gnews.json';
 import SetBookmark from '../components/SetBookmark';
 
 const Top = () => {
-  const category = 'general';
+  // const category = 'general';
+  const category = 'breaking-news';
   const { country } = useContext(CountryContext);
   const params = useParams();
   const result = countries.some((data) => data.code === country);

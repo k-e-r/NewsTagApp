@@ -67,7 +67,7 @@ const Card = ({ articles, source = '' }) => {
               <Bookmark article={article} source={source} id={article.url} />
               <a href={article.url}>
                 <div className={classes.imageContainer}>
-                  {article.urlToImage ? (
+                  {article.image ? (
                     <>
                       {!setImage[idx] && <Skeleton height={480} width={1000} />}
                       {!setImage[idx] && source !== 'mypage' && (
@@ -77,7 +77,7 @@ const Card = ({ articles, source = '' }) => {
                         onLoad={() => imageLoadedHandler(idx)}
                         onError={() => imageErrorHandler(article.url, idx)}
                         id={`img--${article.url}`}
-                        src={article.urlToImage}
+                        src={article.image}
                         alt={article.title}
                       />
                     </>

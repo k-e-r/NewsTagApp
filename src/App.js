@@ -23,10 +23,10 @@ function App() {
       <main>
         <Switch>
           <Route path='/' exact>
-            <Redirect to='/categories/general' />
+            <Redirect to='/categories/breaking-news' />
           </Route>
-          <Route path='/categories/general' component={Top} exact />
-          <Route path='/categories/general/:country' component={Top} />
+          <Route path='/categories/breaking-news' component={Top} exact />
+          <Route path='/categories/breaking-news/:country' component={Top} />
           <Route path='/categories/technology' component={Technology} exact />
           <Route
             path='/categories/technology/:country'
