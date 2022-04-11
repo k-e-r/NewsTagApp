@@ -38,8 +38,9 @@ const Card = ({ articles, source = '' }) => {
   const imageErrorHandler = (url, idx) => {
     // console.log('idxNG', idx);
     document.getElementById('img--' + url).src = `${notImage}`;
-
+    let j = i++;
     setImage[idx] = true;
+    setImageState(j);
   };
 
   useEffect(() => {
@@ -68,7 +69,7 @@ const Card = ({ articles, source = '' }) => {
                 <div className={classes.imageContainer}>
                   {article.urlToImage ? (
                     <>
-                      {!setImage[idx] && <Skeleton height={420} width={1000} />}
+                      {!setImage[idx] && <Skeleton height={480} width={1000} />}
                       {!setImage[idx] && source !== 'mypage' && (
                         <Skeleton height={420} width={1000} />
                       )}
