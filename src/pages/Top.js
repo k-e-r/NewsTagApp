@@ -20,8 +20,6 @@ const Top = () => {
     return <Redirect to={`/categories/${category}/${country}`} />;
   }
 
-  console.log('Top', country);
-
   return (
     <section>
       <SetArticles category={category} country={country} />

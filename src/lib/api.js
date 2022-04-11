@@ -23,7 +23,6 @@ export const getSingleArticle = async (attrData) => {
 };
 
 export const addArticle = async (articleData, attrData) => {
-  console.log('attrData:', attrData);
   const response = await fetch(
     `${firebaseDomain}/categories/${attrData}.json`,
     {
@@ -109,7 +108,6 @@ export async function getSingleUser(usrId) {
 }
 
 export async function addUserBook(bookData, usrId) {
-  console.log('usrId:', usrId, 'bookData', bookData);
   const response = await fetch(`${firebaseAuthDomain}/users/${usrId}.json`, {
     method: 'POST',
     body: JSON.stringify(bookData),

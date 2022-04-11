@@ -42,7 +42,6 @@ const SetArticles = ({ category, country }) => {
     // 自己エラー時は無視
     // 上書き
     if (!error.match(/NewsAPI/) && error !== '') {
-      console.log('getNews');
       getNews(country, category)
         .then((data) => {
           setLoadedArticles(data);

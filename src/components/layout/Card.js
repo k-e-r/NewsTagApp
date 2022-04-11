@@ -26,7 +26,7 @@ const Card = ({ articles, source = '' }) => {
 
   // Skeleton無効化
   const imageLoadedHandler = (idx) => {
-    console.log('idxOK', idx);
+    // console.log('idxOK', idx);
     // 既にcompleteで処理済の場合はスキップ
     if (!setImage[idx]) {
       let j = i++;
@@ -36,7 +36,7 @@ const Card = ({ articles, source = '' }) => {
   };
 
   const imageErrorHandler = (url, idx) => {
-    console.log('idxNG', idx);
+    // console.log('idxNG', idx);
     document.getElementById('img--' + url).src = `${notImage}`;
 
     setImage[idx] = true;
