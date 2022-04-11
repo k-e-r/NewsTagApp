@@ -17,7 +17,7 @@ const SetArticles = ({ category, country }) => {
     // register attrData
     if (attrData !== category + '_' + country) {
       setAttrData(category + '_' + country);
-      // country切り替えでリセット
+      // category/country切り替えでリセット
       setLoadedArticles([]);
     }
     // Database try

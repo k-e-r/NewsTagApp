@@ -16,7 +16,7 @@ export const UserInfoProvider = (props) => {
   };
 
   const setUserArticlesHandler = (articles) => {
-    setUserArticles([articles]);
+    setUserArticles(articles);
   };
 
   const settingContext = {

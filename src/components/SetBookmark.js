@@ -15,20 +15,48 @@ const SetBookmark = () => {
   const userInfoCtx = useContext(UserInfoContext);
   const { userInfo, userArticles } = userInfoCtx;
   const [error, setError] = useState('');
+  const [loadData, setLoadData] = useState(false);
 
   useEffect(() => {
+    if (loadData) {
+      setLoadData(false);
+      getSingleUser(localId)
+        .then((data) => {
+          if (data.length !== 0) {
+            if (data[0].articles !== undefined) {
+              userInfoCtx.setUserArticles(data[0].articles);
+            }
+          }
+        })
+        .catch((error) => setError('DB Error: ' + error));
+    }
+  }, [loadData]);
+
+  useEffect(() => {
+    // userInfo: localId from LoadFavorite
+    // localId: localId from Auth
     if (userInfo !== '' && localId !== '' && userArticles !== null) {
+      // Login後、Serverデータload成功している場合
+      // かつlocalで更新があった場合
       if (!deepEqual(userArticles, articles)) {
         putUserBook(articles, localId, userInfo)
           .then(console.log('put'))
           .catch((error) => setError('Database Error: ' + error));
+
+        setTimeout(() => {
+          setLoadData(true);
+          console.log('delay');
+        }, 500);
       }
     } else if (userInfo === '' && localId !== '') {
+      console.log('setbookmark');
+      // Login後、Serverデータloadしていない場合
       getSingleUser(localId)
         .then((data) => {
           if (data.length !== 0) {
             if (data[0].articles !== undefined) {
               for (let i = 0; i < data[0].articles.length; i++) {
+                // loadデータ登録
                 articlesCtx.addArticles(data[0].articles[i]);
               }
               userInfoCtx.setUserArticles(data[0].articles);

@@ -13,11 +13,8 @@ const ARTICLES_LENGTH = 20;
 let setImage = Array(ARTICLES_LENGTH).fill(false);
 let i = 0;
 
-const Card = ({ articles }) => {
+const Card = ({ articles, source = '' }) => {
   const [imageState, setImageState] = useState(0);
-  // const check = articles.filter((data) => data.urlToImage !== undefined);
-
-  console.log('Card');
 
   useEffect(() => {
     // reset
@@ -30,16 +27,35 @@ const Card = ({ articles }) => {
   // Skeleton無効化
   const imageLoadedHandler = (idx) => {
     console.log('idxOK', idx);
-    i = i + 1;
-    setImage[idx] = true;
-    setImageState(i);
+    // 既にcompleteで処理済の場合はスキップ
+    if (!setImage[idx]) {
+      let j = i++;
+      setImage[idx] = true;
+      setImageState(j);
+    }
   };
 
   const imageErrorHandler = (url, idx) => {
+    console.log('idxNG', idx);
     document.getElementById('img--' + url).src = `${notImage}`;
 
     setImage[idx] = true;
   };
+
+  useEffect(() => {
+    for (let x = 0; x < articles.length; x++) {
+      if (document.getElementById('img--' + articles[x].url) !== null) {
+        if (document.getElementById('img--' + articles[x].url).complete) {
+          // onLoadされてないかつ、画像読み込み済
+          if (!setImage[x]) {
+            let j = i++;
+            setImage[x] = true;
+            setImageState(j);
+          }
+        }
+      }
+    }
+  }, [articles]);
 
   return (
     <>
@@ -47,18 +63,21 @@ const Card = ({ articles }) => {
         {articles &&
           articles.map((article, idx) => (
             <li className={classes.article} key={article.title}>
-              <Bookmark article={article} id={article.url} />
+              <Bookmark article={article} source={source} id={article.url} />
               <a href={article.url}>
                 <div className={classes.imageContainer}>
                   {article.urlToImage ? (
                     <>
                       {!setImage[idx] && <Skeleton height={420} width={1000} />}
+                      {!setImage[idx] && source !== 'mypage' && (
+                        <Skeleton height={420} width={1000} />
+                      )}
                       <img
+                        onLoad={() => imageLoadedHandler(idx)}
+                        onError={() => imageErrorHandler(article.url, idx)}
                         id={`img--${article.url}`}
                         src={article.urlToImage}
                         alt={article.title}
-                        onLoad={() => imageLoadedHandler(idx)}
-                        onError={() => imageErrorHandler(article.url, idx)}
                       />
                     </>
                   ) : (
