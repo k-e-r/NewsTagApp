@@ -1,13 +1,26 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import classes from './NarrowHeader.module.css';
 import pages from '../../../lib/pages.json';
 import { ReactComponent as ChevronDown } from '../../../assets/chevron-down.svg';
 import { ReactComponent as ChevronUp } from '../../../assets/chevron-up.svg';
 
+let openFlg = false;
+
 const NarrowHeader = (props) => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(props.val);
+
+  // for menu close
+  useEffect(() => {
+    if (isOpen) {
+      if (openFlg) {
+        openFlg = false;
+        setIsOpen(false);
+      } else openFlg = true;
+    } else openFlg = false;
+  }, location.path);
 
   const clickHandler = () => {
     if (isOpen === null) {
