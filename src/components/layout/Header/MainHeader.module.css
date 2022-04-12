@@ -1,5 +1,5 @@
 .header {
-  height: 5rem;
+  height: 5.5rem;
   margin: auto;
   /* border-bottom: 0.2rem solid #ccc; */
   display: flex;
@@ -8,6 +8,6 @@
   position: sticky;
   position: -webkit-sticky;
   top: 0px;
-  z-index: 50;
+  z-index: 40;
   background-color: white;
 }

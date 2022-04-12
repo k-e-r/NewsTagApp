@@ -77,68 +77,62 @@ const LogoHeader = (props) => {
             </Link>
           </div>
           <div className={classes.subMenu}>
-            {!isLoggedIn && (
-              <NavLink
-                activeClassName={classes.active}
-                to='/login'
-                className={classes.login}
-              >
-                LOGIN
-              </NavLink>
-            )}
-            {isLoggedIn && (
-              <>
-                <p className={classes.email}>{userEmail}</p>
+            <div className={classes.upperMenu}>
+              {!isLoggedIn && (
                 <NavLink
                   activeClassName={classes.active}
-                  to='/mypage'
+                  to='/login'
                   className={classes.login}
                 >
-                  MY PAGE
+                  LOGIN
                 </NavLink>
-                <button className={classes.btn} onClick={logoutHandler}>
-                  LOGOUT
-                </button>
-              </>
-            )}
-            <button onClick={clickHandler} className={classes.countryBtn}>
-              <IcomoonReact iconSet={iconSet} size={20} icon={country} />
-              {(isOpen === null || isOpen === false) && (
-                <ChevronUp className={classes.icon} />
               )}
-              {isOpen === true && <ChevronDown className={classes.icon} />}
-            </button>
-            {isOpen === true && (
-              <div className={classes.countries}>
-                <ul>
-                  {sortCountries.map((data) => (
-                    <li
-                      key={data.code}
-                      className={classes.countryList}
-                      onClick={() => countryChange(data.code)}
-                    >
-                      <IcomoonReact
-                        iconSet={iconSet}
-                        size={20}
-                        icon={data.code}
-                      />
-                      <p>{data.country}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {/* <select value={country} onChange={countryChange}>
-              {sortCountries.map((data) => (
-                <option
-                  key={data.code}
-                  value={data.code}
-                  className={classes.test}
-                >
-                  {data.country}
-                </option>
-              ))}
-            </select> */}
+              {isLoggedIn && (
+                <>
+                  <NavLink
+                    activeClassName={classes.active}
+                    to='/mypage'
+                    className={classes.login}
+                  >
+                    MY PAGE
+                  </NavLink>
+                  <button className={classes.btn} onClick={logoutHandler}>
+                    LOGOUT
+                  </button>
+                </>
+              )}
+              <button onClick={clickHandler} className={classes.countryBtn}>
+                <IcomoonReact iconSet={iconSet} size={20} icon={country} />
+                {(isOpen === null || isOpen === false) && (
+                  <ChevronUp className={classes.icon} />
+                )}
+                {isOpen === true && <ChevronDown className={classes.icon} />}
+              </button>
+              {isOpen === true && (
+                <>
+                  <div className={classes.background} onClick={clickHandler} />
+                  <div className={classes.countries}>
+                    <ul>
+                      {sortCountries.map((data) => (
+                        <li
+                          key={data.code}
+                          className={classes.countryList}
+                          onClick={() => countryChange(data.code)}
+                        >
+                          <IcomoonReact
+                            iconSet={iconSet}
+                            size={20}
+                            icon={data.code}
+                          />
+                          <p>{data.country}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
+            {isLoggedIn && <p className={classes.lowerMenu}>{userEmail}</p>}
           </div>
         </div>
       </div>
