@@ -9,7 +9,7 @@ const MainHeader = () => {
 
   return (
     <header className={classes.header}>
-      <LogoHeader />
+      <LogoHeader val={null} />
       {width > 710 && <WideHeader />}
       {width <= 710 && <NarrowHeader val={null} />}
     </header>

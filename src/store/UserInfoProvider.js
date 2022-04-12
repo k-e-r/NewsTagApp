@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const UserInfoContext = React.createContext({
   userInfo: '',
-  userArticles: null,
+  userArticles: [],
   setUserInfo: (id) => {},
   setUserArticles: (articles) => {},
 });

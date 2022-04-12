@@ -17,6 +17,10 @@ const SetBookmark = () => {
   const [error, setError] = useState('');
   const [loadData, setLoadData] = useState(false);
 
+  // useEffect(() => {
+  //   userInfoCtx.setUserInfo('');
+  // }, [userInfo]);
+
   useEffect(() => {
     if (loadData) {
       setLoadData(false);

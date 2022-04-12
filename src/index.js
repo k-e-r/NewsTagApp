@@ -11,17 +11,17 @@ import { UserInfoProvider } from './store/UserInfoProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthProvider>
-    <UserInfoProvider>
-      <CountryProvider>
-        <ArticlesProvider>
+  <UserInfoProvider>
+    <CountryProvider>
+      <ArticlesProvider>
+        <AuthProvider>
           <BrowserRouter>
             <ScrollToTop>
               <App />
             </ScrollToTop>
           </BrowserRouter>
-        </ArticlesProvider>
-      </CountryProvider>
-    </UserInfoProvider>
-  </AuthProvider>
+        </AuthProvider>
+      </ArticlesProvider>
+    </CountryProvider>
+  </UserInfoProvider>
 );

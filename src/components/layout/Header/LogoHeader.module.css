@@ -1,3 +1,37 @@
+.countries {
+  position: absolute;
+  top: 2rem;
+  z-index: 50;
+  background-color: white;
+  width: 8rem;
+}
+
+.countries ul {
+  list-style: none;
+  height: 80vh;
+  overflow: scroll;
+}
+
+.countries li {
+  padding: 0.3rem 0.5rem;
+  display: flex;
+  cursor: pointer;
+}
+
+.countries li:not(:first-child) {
+  padding-top: 0.5rem;
+}
+
+.countries li:hover {
+  background-color: rgba(87, 87, 87, 0.116);
+}
+
+.countries svg {
+  margin-right: 0.5rem;
+  stroke: black;
+  stroke-width: 1px;
+}
+
 .flexBox {
   display: flex;
   align-items: center;
@@ -42,8 +76,12 @@
   font-size: 0.8rem;
 }
 
+.subMenu p {
+  margin-right: 0.7rem;
+}
+
 .login {
-  margin-right: 1rem;
+  margin-right: 0.7rem;
   /* line-height: 0.9rem; */
   color: rgb(90, 90, 90);
 }
@@ -64,6 +102,17 @@
 .subMenu button:hover,
 .subMenu button:active {
   color: rgb(168, 168, 168);
+}
+
+.countryBtn {
+  display: flex;
+}
+
+.icon {
+  width: 1rem;
+  fill: rgb(129, 129, 129);
+  display: block;
+  transform: rotate(90);
 }
 
 select,

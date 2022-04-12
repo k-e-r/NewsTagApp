@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.5.0",
     "deep-equal": "^2.0.5",
     "gh-pages": "^3.2.3",
+    "icomoon-react": "^2.0.19",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-loading-skeleton": "^3.0.3",

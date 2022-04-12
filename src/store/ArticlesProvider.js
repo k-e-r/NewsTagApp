@@ -60,10 +60,15 @@ export const ArticlesProvider = (props) => {
     dispatchAction({ type: 'REMOVE', articles: articles });
   };
 
+  const clearArticlesHandler = () => {
+    dispatchAction({ type: 'CLEAR' });
+  };
+
   const articlesContext = {
     articles: state.articles,
     addArticles: addArticlesHandler,
     removeArticles: removeArticlesHandler,
+    clearArticles: clearArticlesHandler,
   };
 
   return (
