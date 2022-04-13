@@ -21,7 +21,10 @@ const LoadFavorite = () => {
   const { userInfo, userArticles } = userInfoCtx;
 
   useEffect(() => {
-    setLoadedArticles(articles);
+    // LIFO
+    setLoadedArticles(
+      articles.map((x, idx, articles) => articles[articles.length - 1 - idx])
+    );
   }, [articles]);
 
   // initで登録データcheck & set
@@ -56,7 +59,10 @@ const LoadFavorite = () => {
         })
         .catch((error) => setError('DB Error: ' + error));
     } else {
-      setLoadedArticles(userArticles);
+      // LIFO
+      setLoadedArticles(
+        articles.map((x, idx, articles) => articles[articles.length - 1 - idx])
+      );
     }
   }, [loadData, userInfo]);
 
