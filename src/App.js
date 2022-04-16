@@ -1,13 +1,7 @@
 import { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Top from './pages/Top';
-import Business from './pages/Business';
-import Technology from './pages/Technology';
-import Entertainment from './pages/Entertainment';
-import Health from './pages/Health';
-import Science from './pages/Science';
-import Sports from './pages/Sports';
+import CategoryPage from './pages/CategoryPage';
 import MainHeader from './components/layout/Header/MainHeader';
 import AuthContext from './store/AuthProvider';
 import Login from './pages/Login';
@@ -23,32 +17,14 @@ function App() {
       <main>
         <Switch>
           <Route path='/' exact>
-            <Redirect to='/categories/breaking-news' />
+            <Redirect to='/categories/breaking-news/:country' />
           </Route>
-          <Route path='/categories/breaking-news' component={Top} exact />
-          <Route path='/categories/breaking-news/:country' component={Top} />
-          <Route path='/categories/technology' component={Technology} exact />
+          <Route path='/categories/:category' component={CategoryPage} exact />
           <Route
-            path='/categories/technology/:country'
-            component={Technology}
-          />
-          <Route path='/categories/business' component={Business} exact />
-          <Route path='/categories/business/:country' component={Business} />
-          <Route
-            path='/categories/entertainment'
-            component={Entertainment}
+            path='/categories/:category/:country'
+            component={CategoryPage}
             exact
           />
-          <Route
-            path='/categories/entertainment/:country'
-            component={Entertainment}
-          />
-          <Route path='/categories/health' component={Health} exact />
-          <Route path='/categories/health/:country' component={Health} />
-          <Route path='/categories/science' component={Science} exact />
-          <Route path='/categories/science/:country' component={Science} />
-          <Route path='/categories/sports' component={Sports} exact />
-          <Route path='/categories/sports/:country' component={Sports} />
           {!authCtx.isLoggedIn && <Route path='/login' component={Login} />}
           {authCtx.isLoggedIn && <Route path='/mypage' component={Mypage} />}
           <Route path='*'>

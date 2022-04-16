@@ -70,9 +70,9 @@ const Card = ({ articles, source = '' }) => {
                   {article.image ? (
                     <>
                       {!setImage[idx] && <Skeleton height={420} width={1000} />}
-                      {!setImage[idx] && source !== 'mypage' && (
+                      {/* {!setImage[idx] && source !== 'mypage' && (
                         <Skeleton height={420} width={1000} />
-                      )}
+                      )} */}
                       <img
                         onLoad={() => imageLoadedHandler(idx)}
                         onError={() => imageErrorHandler(article.url, idx)}

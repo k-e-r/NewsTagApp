@@ -9,6 +9,7 @@ export const DataCheck = (date) => {
   // 何時間経過した場合にNewsAPIをcallするか
   const HOUR = 6;
 
-  if (diff >= HOUR) return false;
-  else return true;
+  // which is better...?
+  return diff < HOUR;
+  // return !(diff >= HOUR);
 };

@@ -19,7 +19,6 @@ const LogoHeader = (props) => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
   const { isLoggedIn, userEmail } = authCtx;
-  console.log('userEmail:', userEmail);
 
   const [country, setCountry] = useState('us');
   const sortCountries = countries.sort((a, b) => {
