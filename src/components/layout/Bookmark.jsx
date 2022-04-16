@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import ArticlesContext from '../../store/ArticlesProvider';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
@@ -7,34 +7,15 @@ import AuthContext from '../../store/AuthProvider';
 
 const BOOKMARK_ARTICLES_NUM = 20;
 
-const Bookmark = ({ article, id, source = '' }) => {
+const Bookmark = ({ article, source = '' }) => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
+  let isBookmarked = articles.some((data) => data.url === article.url);
 
-  useEffect(() => {
-    if (source === 'mypage') {
-      const el = document.getElementById('tag--' + id);
-      if (el !== null) el.style.fill = 'rgb(251, 255, 0)';
-    } else if (articles.findIndex((data) => article.url === data.url) !== -1) {
-      const el = document.getElementById('tag--' + id);
-      if (el !== null) el.style.fill = 'rgb(251, 255, 0)';
-    }
-  }, [source]);
-
-  const clickHandler = (article, id) => {
-    const el = document.getElementById('tag--' + id);
-    if (getComputedStyle(el).fill !== 'rgb(251, 255, 0)') {
-      if (articles.length !== BOOKMARK_ARTICLES_NUM) {
-        articlesCtx.addArticles(article);
-        setTimeout(() => {
-          el.style.fill = 'rgb(251, 255, 0)';
-        }, 200);
-      } else {
-        alert('Sorry, bookmark is limited to 20 articles.');
-      }
-    } else {
+  const clickHandler = (article) => {
+    if (articles.some((data) => data.url === article.url)) {  // remove
       if (source === 'mypage') {
         if (
           window.confirm(
@@ -44,10 +25,19 @@ const Bookmark = ({ article, id, source = '' }) => {
           articlesCtx.removeArticles(article);
         }
       } else {
-        articlesCtx.removeArticles(article);
         setTimeout(() => {
-          el.style.fill = 'rgba(255, 255, 255, 0.863)';
+          articlesCtx.removeArticles(article);
         }, 200);
+        isBookmarked = false;
+      }
+    } else {  // add
+      if (articles.length !== BOOKMARK_ARTICLES_NUM) {
+        setTimeout(() => {
+          articlesCtx.addArticles(article);
+        }, 200);
+        isBookmarked = true;
+      } else {
+        alert('Sorry, bookmark is limited to 20 articles.');
       }
     }
   };
@@ -60,13 +50,10 @@ const Bookmark = ({ article, id, source = '' }) => {
       {isLoggedIn && (
         <>
           <TagIcon
-            id={`tag--${article.url}`}
+            style={{fill : isBookmarked ? 'rgb(251, 255, 0)' : 'rgba(255, 255, 255, 0.863)'}}
             className={`${classes.tag} tag--${article.url}`}
-            onClick={() => clickHandler(article, id)}
+            onClick={() => clickHandler(article)}
           />
-          {/* {articles.findIndex((data) => article.url === data.url) !== -1 &&
-            settingColor(id)} */}
-          {/* <SetBookmark /> */}
         </>
       )}
     </>

@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { NavLink, useHistory, Link, useLocation, Redirect } from 'react-router-dom';
+import { NavLink, Link, useLocation, Redirect } from 'react-router-dom';
 
 import classes from './LogoHeader.module.css';
 
@@ -16,7 +16,6 @@ let openFlg = false;
 
 const LogoHeader = (props) => {
   const location = useLocation();
-  const history = useHistory();
   const authCtx = useContext(AuthContext);
   const { isLoggedIn, userEmail } = authCtx;
   const countryCtx = useContext(CountryContext);
@@ -29,8 +28,6 @@ const LogoHeader = (props) => {
   });
 
   const [isOpen, setIsOpen] = useState(props.val);
-
-
 
   const countryChange = (code) => {
     console.log(code);
@@ -62,7 +59,7 @@ const LogoHeader = (props) => {
 
   const logoutHandler = () => {
     authCtx.logout();
-    return <Redirect to={`/`} />;
+    return <Redirect to={'/'} />;
   };
 
   return (

@@ -64,7 +64,7 @@ const Card = ({ articles, source = '' }) => {
         {articles &&
           articles.map((article, idx) => (
             <li className={classes.article} key={article.title}>
-              <Bookmark article={article} source={source} id={article.url} />
+              <Bookmark article={article} source={source} />
               <a href={article.url} target='_blank' rel='noopener noreferrer'>
                 <div className={classes.imageContainer}>
                   {article.image ? (
