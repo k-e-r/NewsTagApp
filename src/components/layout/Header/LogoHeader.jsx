@@ -8,7 +8,7 @@ import AuthContext from '../../../store/AuthProvider';
 import countries from '../../../lib/countries_gnews.json';
 import { ReactComponent as Logo } from '../../../assets/bookmark.svg';
 import iconSet from '../../../assets/selection.json';
-import IcomoonReact, { iconList } from 'icomoon-react';
+import IcomoonReact from 'icomoon-react';
 import { ReactComponent as ChevronDown } from '../../../assets/chevron-down.svg';
 import { ReactComponent as ChevronUp } from '../../../assets/chevron-up.svg';
 
