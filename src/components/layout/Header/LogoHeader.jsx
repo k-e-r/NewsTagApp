@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { NavLink, useHistory, Link, useLocation } from 'react-router-dom';
+import { NavLink, useHistory, Link, useLocation, Redirect } from 'react-router-dom';
 
 import classes from './LogoHeader.module.css';
 
@@ -19,8 +19,9 @@ const LogoHeader = (props) => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
   const { isLoggedIn, userEmail } = authCtx;
+  const countryCtx = useContext(CountryContext);
 
-  const [country, setCountry] = useState('us');
+  const [country, setCountry] = useState(countryCtx.country);
   const sortCountries = countries.sort((a, b) => {
     if (a.country < b.country) return -1;
     else if (a.country > b.country) return 1;
@@ -28,6 +29,14 @@ const LogoHeader = (props) => {
   });
 
   const [isOpen, setIsOpen] = useState(props.val);
+
+
+
+  const countryChange = (code) => {
+    console.log(code);
+    setCountry(code);
+    countryCtx.setCountry(code);
+  };
 
   // for menu close
   useEffect(() => {
@@ -53,16 +62,7 @@ const LogoHeader = (props) => {
 
   const logoutHandler = () => {
     authCtx.logout();
-    // return <Redirect to={`/categories/general/${country}`} />;
-    history.replace('/categories/breaking-news/');
-  };
-
-  const countryCtx = useContext(CountryContext);
-
-  const countryChange = (code) => {
-    console.log(code);
-    setCountry(code);
-    countryCtx.setCountry(code);
+    return <Redirect to={`/`} />;
   };
 
   return (
@@ -70,7 +70,7 @@ const LogoHeader = (props) => {
       <div className={classes.flexBox}>
         <div className={classes.logoBar}>
           <div className={classes.logo}>
-            <Link to='/categories/breaking-news'>
+            <Link to='/'>
               <p className={classes.logoName}>News</p>
               <Logo className={classes.logoIcon} />
             </Link>

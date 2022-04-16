@@ -16,7 +16,7 @@ function App() {
       <main>
         <Switch>
           <Route path='/' exact>
-            <Redirect to='/categories/breaking-news/:country' />
+            <Redirect to='/categories/:category/:country' />
           </Route>
           <Route
             path='/categories/:category/:country?'
@@ -30,7 +30,7 @@ function App() {
             <Route path='/mypage' component={Mypage} exact />
           )}
           <Route path='*'>
-            <Redirect to='/categories/breaking-news/:country' />
+            <Redirect to='/categories/:category/:country' />
           </Route>
         </Switch>
       </main>
