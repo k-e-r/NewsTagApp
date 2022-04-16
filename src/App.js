@@ -18,9 +18,8 @@ function App() {
           <Route path='/' exact>
             <Redirect to='/categories/breaking-news/:country' />
           </Route>
-          <Route path='/categories/:category' component={CategoryPage} exact />
           <Route
-            path='/categories/:category/:country'
+            path='/categories/:category/:country?'
             component={CategoryPage}
             exact
           />
