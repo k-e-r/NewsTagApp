@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
@@ -7,21 +7,21 @@ import { AuthProvider } from './store/AuthProvider';
 import { CountryProvider } from './store/CountryProvider';
 import { ArticlesProvider } from './store/ArticlesProvider';
 import ScrollToTop from './hooks/ScrollToTop';
-import { UserInfoProvider } from './store/UserInfoProvider';
+import SetBookmark from './hooks/SetBookmark';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <UserInfoProvider>
-    <CountryProvider>
-      <ArticlesProvider>
-        <AuthProvider>
-          <BrowserRouter>
-            <ScrollToTop>
+ReactDOM.render(
+  <CountryProvider>
+    <ArticlesProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <ScrollToTop>
+            <SetBookmark>
               <App />
-            </ScrollToTop>
-          </BrowserRouter>
-        </AuthProvider>
-      </ArticlesProvider>
-    </CountryProvider>
-  </UserInfoProvider>
+            </SetBookmark>
+          </ScrollToTop>
+        </BrowserRouter>
+      </AuthProvider>
+    </ArticlesProvider>
+  </CountryProvider>,
+  document.getElementById('root')
 );

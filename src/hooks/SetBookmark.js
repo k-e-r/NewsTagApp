@@ -1,76 +1,52 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
+import useAsyncEffect from 'use-async-effect';
 
+import { getSingleUser, addUserBook, putUserBook } from '../lib/api';
 import ArticlesContext from '../store/ArticlesProvider';
 import AuthContext from '../store/AuthProvider';
-import UserInfoContext from '../store/UserInfoProvider';
-import { getSingleUser, putUserBook } from '../lib/api';
 
-let deepEqual = require('deep-equal');
-
-const SetBookmark = () => {
+const SetBookmark = (props) => {
   const authCtx = useContext(AuthContext);
   const localId = authCtx.localId;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
-  const userInfoCtx = useContext(UserInfoContext);
-  const { userInfo, userArticles } = userInfoCtx;
-  const [error, setError] = useState('');
-  const [loadData, setLoadData] = useState(false);
+  const [userInfo, setUserInfo] = useState('');
 
-  // useEffect(() => {
-  //   userInfoCtx.setUserInfo('');
-  // }, [userInfo]);
-
-  useEffect(() => {
-    if (loadData) {
-      setLoadData(false);
-      getSingleUser(localId)
-        .then((data) => {
-          if (data.length !== 0) {
-            if (data[0].articles !== undefined) {
-              userInfoCtx.setUserArticles(data[0].articles);
-            }
-          }
-        })
-        .catch((error) => setError('DB Error: ' + error));
-    }
-  }, [loadData]);
-
-  useEffect(() => {
-    // userInfo: localId from LoadFavorite
-    // localId: localId from Auth
-    if (userInfo !== '' && localId !== '' && userArticles !== null) {
-      // Login後、Serverデータload成功している場合
-      // かつlocalで更新があった場合
-      if (!deepEqual(userArticles, articles)) {
-        putUserBook(articles, localId, userInfo)
-          .then()
-          .catch((error) => setError('Database Error: ' + error));
-
-        setTimeout(() => {
-          setLoadData(true);
-        }, 500);
+  // initで登録データcheck & set
+  async function loadArticles() {
+    const data = await getSingleUser(localId);
+    if (data[0]) {
+      // user登録済みか確認
+      if (data[0].articles) {
+        // 登録された記事読み込み
+        for (let i = 0; i < data[0].articles.length; i++) {
+          // 登録された記事をContextに保存
+          articlesCtx.addArticles(data[0].articles[i]);
+        }
       }
-    } else if (userInfo === '' && localId !== '') {
-      // Login後、Serverデータloadしていない場合
-      getSingleUser(localId)
-        .then((data) => {
-          if (data.length !== 0) {
-            if (data[0].articles !== undefined) {
-              for (let i = 0; i < data[0].articles.length; i++) {
-                // loadデータ登録
-                articlesCtx.addArticles(data[0].articles[i]);
-              }
-              userInfoCtx.setUserArticles(data[0].articles);
-            }
-            userInfoCtx.setUserInfo(data[0].id);
-          }
-        })
-        .catch((error) => setError('DB Error: ' + error));
+      setUserInfo(data[0].id);
+    } else {
+      // user登録
+      await addUserBook(
+        {
+          data: localId,
+          articles: [],
+        },
+        localId
+      );
     }
-  }, [articles]);
+  }
+  useAsyncEffect(loadArticles, [localId]);
 
-  return <>{error && console.log(`error:${error}`)}</>;
+  // 変更があった場合、Serverに反映
+  async function putArticles() {
+    if (userInfo) {
+      putUserBook(articles, localId, userInfo);
+    }
+  }
+  useAsyncEffect(putArticles, [articles]);
+
+  return <>{props.children}</>;
 };
 
 export default SetBookmark;

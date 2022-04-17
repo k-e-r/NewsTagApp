@@ -18,7 +18,7 @@ const Card = ({ articles, source = '' }) => {
 
   useEffect(() => {
     // reset
-    if (imageState === articles.length) {
+    if (imageState - 1 === articles.length) {
       setImage = Array(ARTICLES_LENGTH).fill(false);
       i = 0;
     }
@@ -29,7 +29,7 @@ const Card = ({ articles, source = '' }) => {
     // console.log('idxOK', idx);
     // 既にcompleteで処理済の場合はスキップ
     if (!setImage[idx]) {
-      let j = i++;
+      let j = ++i;
       setImage[idx] = true;
       setImageState(j);
     }
@@ -38,7 +38,7 @@ const Card = ({ articles, source = '' }) => {
   const imageErrorHandler = (url, idx) => {
     // console.log('idxNG', idx);
     document.getElementById('img--' + url).src = `${notImage}`;
-    let j = i++;
+    let j = ++i;
     setImage[idx] = true;
     setImageState(j);
   };
@@ -49,7 +49,7 @@ const Card = ({ articles, source = '' }) => {
         if (document.getElementById('img--' + articles[x].url).complete) {
           // onLoadされてないかつ、画像読み込み済
           if (!setImage[x]) {
-            let j = i++;
+            let j = ++i;
             setImage[x] = true;
             setImageState(j);
           }
