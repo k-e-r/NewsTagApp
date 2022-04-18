@@ -27,15 +27,15 @@ const Bookmark = ({ article, source = '' }) => {
       } else {
         setTimeout(() => {
           articlesCtx.removeArticles(article);
+          isBookmarked = false;
         }, 200);
-        isBookmarked = false;
       }
     } else {  // add
       if (articles.length !== BOOKMARK_ARTICLES_NUM) {
         setTimeout(() => {
           articlesCtx.addArticles(article);
+          isBookmarked = true;
         }, 200);
-        isBookmarked = true;
       } else {
         alert('Sorry, bookmark is limited to 20 articles.');
       }

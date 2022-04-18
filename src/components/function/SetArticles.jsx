@@ -7,7 +7,7 @@ import {
   putArticle,
 } from '../../lib/api';
 import { DataCheck } from '../../lib/date-check';
-import Card from '../layout/Card';
+import ArticlesCards from '../layout/ArticlesCards';
 
 const SetArticles = ({ category, country }) => {
   const [attrData, setAttrData] = useState('');
@@ -94,7 +94,7 @@ const SetArticles = ({ category, country }) => {
 
   return (
     <section>
-      <Card articles={loadedArticles} />
+      <ArticlesCards articles={loadedArticles} />
     </section>
   );
 };

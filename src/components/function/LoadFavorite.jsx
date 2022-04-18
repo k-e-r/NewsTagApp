@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 
-import Card from '../layout/Card';
+import ArticlesCards from '../layout/ArticlesCards';
 import ArticlesContext from '../../store/ArticlesProvider';
 import classes from './LoadFavorite.module.css';
 
@@ -20,7 +20,7 @@ const LoadFavorite = () => {
     <section>
       {loadedArticles.length !== 0 && (
         <>
-          <Card articles={loadedArticles} source='mypage' />
+          <ArticlesCards articles={loadedArticles} source='mypage' />
         </>
       )}
       {loadedArticles.length === 0 && (
