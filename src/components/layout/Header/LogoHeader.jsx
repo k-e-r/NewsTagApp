@@ -30,7 +30,6 @@ const LogoHeader = (props) => {
   const [isOpen, setIsOpen] = useState(props.val);
 
   const countryChange = (code) => {
-    console.log(code);
     setCountry(code);
     countryCtx.setCountry(code);
   };

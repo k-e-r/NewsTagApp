@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import useAsyncEffect from 'use-async-effect';
 
 import {
   getNews,
@@ -18,7 +19,7 @@ const SetArticles = ({ category, country }) => {
 
   // データ受領後、再レンダリングされるため、
   // JSX共有可能
-  useEffect(() => {
+  async function loadArticles() {
     // register attrData
     if (attrData !== category + '_' + country) {
       setAttrData(category + '_' + country);
@@ -27,70 +28,63 @@ const SetArticles = ({ category, country }) => {
     }
     // Database try
     if (loadedArticles.length === 0 && attrData !== '') {
-      getSingleArticle(attrData)
-        .then((data) => {
-          // もし日付が古いならData上書き指示
-          if (!DataCheck(data[0].date)) {
-            // PUT用にデータセット
-            setArticlesId(data[0].id);
-            setError('overwriting');
-          } else {
-            setLoadedArticles(data[0].articles);
-          }
-        })
-        .catch((error) => setError('Database Error: ' + error));
+      const data = await getSingleArticle(attrData);
+      // もし日付が古いならData上書き指示
+      if (!DataCheck(data[0]?.date)) {
+        // PUT用にデータセット
+        setArticlesId(data[0].id);
+        setError('overwriting');
+      } else {
+        setLoadedArticles(data[0]?.articles);
+      }
     }
-  }, [category, country, loadedArticles, attrData]);
+  }
+  useAsyncEffect(loadArticles, [category, country, loadedArticles, attrData]);
 
   // NewsAPI try
-  useEffect(() => {
+  async function newsApiCall() {
     // 自己エラー時は無視
     // 上書き
     if (!error.match(/NewsAPI/) && error !== '') {
-      getNews(country, category)
-        .then((data) => {
-          setLoadedArticles(data);
-          // 新規記事をDB登録指示
-          setRegisterDB(true);
-        })
-        .catch((error) => {
-          setError('NewsAPI Error: ' + error);
-        });
+      const data = await getNews(country, category);
+      if (data) {
+        setLoadedArticles(data);
+        // 新規記事をDB登録指示
+        setRegisterDB(true);
+      }
     }
     setError('');
-  }, [category, country, error]);
+  }
+  useAsyncEffect(newsApiCall, [error]);
 
   // DB登録
-  useEffect(() => {
+  async function setArticle() {
     if (registerDB) {
       setRegisterDB('');
       if (articlesId) {
         // PUT
-        putArticle(
+        await putArticle(
           {
             date: new Date().toLocaleString('en-US'),
             articles: loadedArticles,
           },
           attrData,
           articlesId
-        ).catch((error) => {
-          setError('Register DB Error: ' + error);
-        });
+        )
         setArticlesId('');
       } else {
         // POST
-        addArticle(
+        await addArticle(
           {
             date: new Date().toLocaleString('en-US'),
             articles: loadedArticles,
           },
           attrData
-        ).catch((error) => {
-          setError('Register DB Error: ' + error);
-        });
+        )
       }
     }
-  }, [registerDB, articlesId, loadedArticles, attrData]);
+  }
+  useAsyncEffect(setArticle, [registerDB, articlesId, loadedArticles, attrData]);
 
   return (
     <section>

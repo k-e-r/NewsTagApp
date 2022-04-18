@@ -13,16 +13,14 @@ const SetBookmark = (props) => {
   const [userInfo, setUserInfo] = useState('');
 
   // initで登録データcheck & set
-  async function loadArticles() {
+  async function loadUserArticles() {
     const data = await getSingleUser(localId);
-    if (data[0]) {
-      // user登録済みか確認
-      if (data[0].articles) {
-        // 登録された記事読み込み
-        for (let i = 0; i < data[0].articles.length; i++) {
-          // 登録された記事をContextに保存
-          articlesCtx.addArticles(data[0].articles[i]);
-        }
+    // user登録済みか確認
+    if (data[0]?.articles) {
+      // 登録された記事読み込み
+      for (let i = 0; i < data[0].articles.length; i++) {
+        // 登録された記事をContextに保存
+        articlesCtx.addArticles(data[0].articles[i]);
       }
       setUserInfo(data[0].id);
     } else {
@@ -36,15 +34,15 @@ const SetBookmark = (props) => {
       );
     }
   }
-  useAsyncEffect(loadArticles, [localId]);
+  useAsyncEffect(loadUserArticles, [localId]);
 
   // 変更があった場合、Serverに反映
-  async function putArticles() {
+  async function putUserArticles() {
     if (userInfo) {
       putUserBook(articles, localId, userInfo);
     }
   }
-  useAsyncEffect(putArticles, [articles]);
+  useAsyncEffect(putUserArticles, [articles]);
 
   return <>{props.children}</>;
 };

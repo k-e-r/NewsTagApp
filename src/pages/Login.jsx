@@ -1,5 +1,4 @@
 import { useState, useRef, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import AuthContext from '../store/AuthProvider';
 import classes from './Login.module.css';
@@ -7,7 +6,6 @@ import classes from './Login.module.css';
 const apikey = process.env['REACT_APP_AUTH_APIKEY'];
 
 const Login = () => {
-  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -68,7 +66,6 @@ const Login = () => {
           data.localId,
           data.email
         );
-        history.replace('/mypage');
       })
       .catch((err) => {
         alert(err.message);
