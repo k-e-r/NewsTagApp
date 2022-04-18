@@ -7,7 +7,7 @@ import {
   putArticle,
 } from '../../lib/api';
 import { DataCheck } from '../../lib/date-check';
-import ArticlesCards from '../layout/ArticlesCards';
+import ArticlesCards from './ArticlesCards';
 
 const SetArticles = ({ category, country }) => {
   const [attrData, setAttrData] = useState('');

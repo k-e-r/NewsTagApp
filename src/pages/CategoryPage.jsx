@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
-import SetArticles from '../components/function/SetArticles';
+import SetArticles from '../components/articles/SetArticles';
 import CountryContext from '../store/CountryProvider';
 import countries from '../lib/countries_gnews.json';
 import categories from '../lib/pages_gnews.json';

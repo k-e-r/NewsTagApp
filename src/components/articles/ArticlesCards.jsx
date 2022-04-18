@@ -1,6 +1,6 @@
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import Loading from '../function/Loading';
+import Loading from './Loading';
 import Card from './Card';
 import classes from './Card.module.css';
 

@@ -1,4 +1,4 @@
-import LoadFavorite from '../components/function/LoadFavorite';
+import LoadFavorite from '../components/articles/LoadFavorite';
 
 const Mypage = () => {
   return (

@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
 
-import ArticlesCards from '../layout/ArticlesCards';
+import ArticlesCards from './ArticlesCards';
 import ArticlesContext from '../../store/ArticlesProvider';
 import classes from './LoadFavorite.module.css';
 
