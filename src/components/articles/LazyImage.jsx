@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import notImage from '../../assets/image-not-found-scaled.jpg';
-import classes from './Card.module.css';
+import classes from './Articles.module.css';
 
 const LazyImage = ({ article }) => {
   const [loading, setLoading] = useState(false);

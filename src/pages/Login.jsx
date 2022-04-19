@@ -1,6 +1,6 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef } from 'react';
 
-import AuthContext from '../store/AuthProvider';
+import useAuthentiation from '../hooks/useAuthentication';
 import classes from './Login.module.css';
 
 const apikey = process.env['REACT_APP_AUTH_APIKEY'];
@@ -9,7 +9,7 @@ const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const authCtx = useContext(AuthContext);
+  const authCtx = useAuthentiation();
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);

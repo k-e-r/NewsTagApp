@@ -2,9 +2,9 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 import Bookmark from './Bookmark';
 import LazyImage from './LazyImage';
-import classes from './Card.module.css';
+import classes from './Articles.module.css';
 
-const Card = ({ article, source = '' }) => {
+const ArticleCard = ({ article, source = '' }) => {
   return (
     <>
       <Bookmark article={article} source={source} />
@@ -22,4 +22,4 @@ const Card = ({ article, source = '' }) => {
   );
 };
 
-export default Card;
+export default ArticleCard;

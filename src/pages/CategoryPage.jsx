@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 
-import SetArticles from '../components/articles/SetArticles';
+import LoadArticles from '../components/articles/LoadArticles';
 import CountryContext from '../store/CountryProvider';
 import countries from '../lib/countries_gnews.json';
 import categories from '../lib/pages_gnews.json';
@@ -24,7 +24,7 @@ const CategoryPage = () => {
 
   return (
     <section>
-      <SetArticles category={category} country={params.country} />
+      <LoadArticles category={category} country={params.country} />
     </section>
   );
 };

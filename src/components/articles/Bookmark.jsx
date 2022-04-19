@@ -3,12 +3,12 @@ import { useContext } from 'react';
 import ArticlesContext from '../../store/ArticlesProvider';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
 import classes from './Bookmark.module.css';
-import AuthContext from '../../store/AuthProvider';
+import useAuthentiation from '../../hooks/useAuthentication';
 
 const BOOKMARK_ARTICLES_NUM = 20;
 
 const Bookmark = ({ article, source = '' }) => {
-  const authCtx = useContext(AuthContext);
+  const authCtx = useAuthentiation();
   const isLoggedIn = authCtx.isLoggedIn;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;

@@ -2,9 +2,9 @@ import { useEffect, useContext, useState } from 'react';
 
 import ArticlesCards from './ArticlesCards';
 import ArticlesContext from '../../store/ArticlesProvider';
-import classes from './LoadFavorite.module.css';
+import classes from './LoadFavoriteArticles.module.css';
 
-const LoadFavorite = () => {
+const LoadFavoriteArticles = () => {
   const [loadedArticles, setLoadedArticles] = useState([]);
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;
@@ -35,4 +35,4 @@ const LoadFavorite = () => {
   );
 };
 
-export default LoadFavorite;
+export default LoadFavoriteArticles;

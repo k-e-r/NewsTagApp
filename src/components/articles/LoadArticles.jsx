@@ -10,7 +10,7 @@ import {
 import { DataCheck } from '../../lib/date-check';
 import ArticlesCards from './ArticlesCards';
 
-const SetArticles = ({ category, country }) => {
+const LoadArticles = ({ category, country }) => {
   const [attrData, setAttrData] = useState('');
   const [loadedArticles, setLoadedArticles] = useState([]);
   const [error, setError] = useState('');
@@ -93,4 +93,4 @@ const SetArticles = ({ category, country }) => {
   );
 };
 
-export default SetArticles;
+export default LoadArticles;

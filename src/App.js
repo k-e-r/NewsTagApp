@@ -1,15 +1,14 @@
-import { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import AuthContext from './store/AuthProvider';
-import MainHeader from './components/layout/Header/MainHeader';
+import useAuthentiation from './hooks/useAuthentication';
+import MainHeader from './components/common/Header/MainHeader';
 import CategoryPage from './pages/CategoryPage';
 import Login from './pages/Login';
 import Mypage from './pages/Mypage';
-import Footer from './components/layout/Footer';
+import Footer from './components/common/Footer';
 
 function App() {
-  const authCtx = useContext(AuthContext);
+  const authCtx = useAuthentiation();
   return (
     <>
       <MainHeader />

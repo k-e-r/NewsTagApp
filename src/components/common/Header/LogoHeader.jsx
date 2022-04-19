@@ -4,7 +4,7 @@ import { NavLink, Link, useLocation, Redirect } from 'react-router-dom';
 import classes from './LogoHeader.module.css';
 
 import CountryContext from '../../../store/CountryProvider';
-import AuthContext from '../../../store/AuthProvider';
+import useAuthentiation from '../../../hooks/useAuthentication';
 import countries from '../../../lib/countries_gnews.json';
 import { ReactComponent as Logo } from '../../../assets/bookmark.svg';
 import iconSet from '../../../assets/selection.json';
@@ -16,7 +16,7 @@ let openFlg = false;
 
 const LogoHeader = (props) => {
   const location = useLocation();
-  const authCtx = useContext(AuthContext);
+  const authCtx = useAuthentiation();
   const { isLoggedIn, userEmail } = authCtx;
   const countryCtx = useContext(CountryContext);
 

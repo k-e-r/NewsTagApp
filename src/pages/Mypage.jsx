@@ -1,9 +1,9 @@
-import LoadFavorite from '../components/articles/LoadFavorite';
+import LoadFavoriteArticles from '../components/articles/LoadFavoriteArticles';
 
 const Mypage = () => {
   return (
     <section>
-      <LoadFavorite />
+      <LoadFavoriteArticles />
     </section>
   );
 };

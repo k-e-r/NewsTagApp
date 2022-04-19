@@ -3,10 +3,10 @@ import useAsyncEffect from 'use-async-effect';
 
 import { getSingleUser, addUserBook, putUserBook } from '../lib/api';
 import ArticlesContext from '../store/ArticlesProvider';
-import AuthContext from '../store/AuthProvider';
+import useAuthentiation from './useAuthentication';
 
 const SetBookmark = (props) => {
-  const authCtx = useContext(AuthContext);
+  const authCtx = useAuthentiation();
   const localId = authCtx.localId;
   const articlesCtx = useContext(ArticlesContext);
   const { articles } = articlesCtx;

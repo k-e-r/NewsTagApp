@@ -1,8 +1,8 @@
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import Loading from './Loading';
-import Card from './Card';
-import classes from './Card.module.css';
+import ArticleCard from './ArticleCard';
+import classes from './Articles.module.css';
 
 const ArticlesCards = ({ articles, source = '' }) => {
   return (
@@ -11,7 +11,7 @@ const ArticlesCards = ({ articles, source = '' }) => {
       {articles?.length &&
         articles.map((article) => (
           <li className={classes.article} key={article.url}>
-            <Card article={article} source={source} />
+            <ArticleCard article={article} source={source} />
           </li>
       ))}
     </ul>
