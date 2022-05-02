@@ -10,7 +10,9 @@ const CategoryPage = () => {
   const params = useParams();
   const { country } = useContext(CountryContext);
   const countryResult = countries.some((data) => data.code === params.country);
-  const categoryResult = categories.wide.some((data) => data.path === `/categories/${params.category}`);
+  const categoryResult = categories.wide.some(
+    (data) => data.path === `/categories/${params.category}`
+  );
   let category = params.category;
   if (!categoryResult) category = 'breaking-news';
 

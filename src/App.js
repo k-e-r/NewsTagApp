@@ -6,9 +6,12 @@ import CategoryPage from './pages/CategoryPage';
 import Login from './pages/Login';
 import Mypage from './pages/Mypage';
 import Footer from './components/common/Footer';
+import SetBookmark from './hooks/SetBookmark';
 
 function App() {
   const authCtx = useAuthentiation();
+  SetBookmark();
+
   return (
     <>
       <MainHeader />

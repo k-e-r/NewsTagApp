@@ -5,7 +5,7 @@ import { getSingleUser, addUserBook, putUserBook } from '../lib/api';
 import ArticlesContext from '../store/ArticlesProvider';
 import useAuthentiation from './useAuthentication';
 
-const SetBookmark = (props) => {
+const SetBookmark = () => {
   const authCtx = useAuthentiation();
   const localId = authCtx.localId;
   const articlesCtx = useContext(ArticlesContext);
@@ -43,8 +43,6 @@ const SetBookmark = (props) => {
     }
   }
   useAsyncEffect(putUserArticles, [articles]);
-
-  return <>{props.children}</>;
 };
 
 export default SetBookmark;

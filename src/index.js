@@ -7,7 +7,6 @@ import { AuthProvider } from './store/AuthProvider';
 import { CountryProvider } from './store/CountryProvider';
 import { ArticlesProvider } from './store/ArticlesProvider';
 import ScrollToTop from './hooks/ScrollToTop';
-import SetBookmark from './hooks/SetBookmark';
 
 ReactDOM.render(
   <CountryProvider>
@@ -15,9 +14,7 @@ ReactDOM.render(
       <AuthProvider>
         <BrowserRouter>
           <ScrollToTop>
-            <SetBookmark>
-              <App />
-            </SetBookmark>
+            <App />
           </ScrollToTop>
         </BrowserRouter>
       </AuthProvider>
