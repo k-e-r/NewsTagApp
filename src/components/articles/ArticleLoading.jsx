@@ -3,7 +3,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 import classes from './Articles.module.css';
 
-const Loading = () => {
+const ArticleLoading = () => {
   // for loading window
   let loading = [];
   for (let i = 0; i < 20; i++) {
@@ -32,4 +32,4 @@ const Loading = () => {
   return <>{loading}</>;
 };
 
-export default Loading;
+export default ArticleLoading;
