@@ -1,9 +1,10 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation, Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import classes from './LogoHeader.module.css';
 
-import CountryContext from '../../../store/CountryProvider';
+import { countryActions } from '../../../store/country-slice';
 import useAuthentiation from '../../../hooks/useAuthentication';
 import countries from '../../../lib/countries_gnews.json';
 import { ReactComponent as Logo } from '../../../assets/bookmark.svg';
@@ -18,9 +19,11 @@ const LogoHeader = (props) => {
   const location = useLocation();
   const authCtx = useAuthentiation();
   const { isLoggedIn, userEmail } = authCtx;
-  const countryCtx = useContext(CountryContext);
+  const dispatch = useDispatch();
 
-  const [country, setCountry] = useState(countryCtx.country);
+  const [country, setCountry] = useState(
+    useSelector((state) => state.country.country)
+  );
   const sortCountries = countries.sort((a, b) => {
     if (a.country < b.country) return -1;
     else if (a.country > b.country) return 1;
@@ -31,7 +34,7 @@ const LogoHeader = (props) => {
 
   const countryChange = (code) => {
     setCountry(code);
-    countryCtx.setCountry(code);
+    dispatch(countryActions.setCountry(code));
   };
 
   // for menu close

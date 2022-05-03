@@ -1,14 +1,14 @@
-import { useContext } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import LoadArticles from '../components/articles/LoadArticles';
-import CountryContext from '../store/CountryProvider';
+
 import countries from '../lib/countries_gnews.json';
 import categories from '../lib/pages_gnews.json';
 
 const CategoryPage = () => {
   const params = useParams();
-  const { country } = useContext(CountryContext);
+  const country = useSelector((state) => state.country.country);
   const countryResult = countries.some((data) => data.code === params.country);
   const categoryResult = categories.wide.some(
     (data) => data.path === `/categories/${params.category}`

@@ -1,15 +1,16 @@
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './App';
 import { AuthProvider } from './store/AuthProvider';
-import { CountryProvider } from './store/CountryProvider';
 import { ArticlesProvider } from './store/ArticlesProvider';
 import ScrollToTop from './hooks/ScrollToTop';
+import store from './store/index';
 
 ReactDOM.render(
-  <CountryProvider>
+  <Provider store={store}>
     <ArticlesProvider>
       <AuthProvider>
         <BrowserRouter>
@@ -19,6 +20,6 @@ ReactDOM.render(
         </BrowserRouter>
       </AuthProvider>
     </ArticlesProvider>
-  </CountryProvider>,
+  </Provider>,
   document.getElementById('root')
 );
