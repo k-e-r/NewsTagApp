@@ -2,7 +2,10 @@
 On this site, you can check various category news from different countries, and after creating an account, you can register your favorite articles.
 
 ## website URL
-https://www.kestudies.com/categories/breaking-news/us
+https://www.kestudies.com/categories/breaking-news/us</br>
+### test account</br>
+ * email: test2@test.com</br>
+ * pass: 1234567</br>
 
 ## How to use
 Click the LOGIN button in the upper right corner to move to the Login screen, then click "Create new account".</br>
