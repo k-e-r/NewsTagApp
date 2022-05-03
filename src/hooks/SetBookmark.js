@@ -1,16 +1,17 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { getSingleUser, addUserBook, putUserBook } from '../lib/api';
-import ArticlesContext from '../store/ArticlesProvider';
 import useAuthentiation from './useAuthentication';
+import { articlesActions } from '../store/articles-slice';
 
 const SetBookmark = () => {
   const authCtx = useAuthentiation();
   const localId = authCtx.localId;
-  const articlesCtx = useContext(ArticlesContext);
-  const { articles } = articlesCtx;
+  const articles = useSelector((state) => state.articles.articles);
   const [userInfo, setUserInfo] = useState('');
+  const dispatch = useDispatch();
 
   // initで登録データcheck & set
   async function loadUserArticles() {
@@ -20,7 +21,7 @@ const SetBookmark = () => {
       // 登録された記事読み込み
       for (let i = 0; i < data[0].articles.length; i++) {
         // 登録された記事をContextに保存
-        articlesCtx.addArticles(data[0].articles[i]);
+        dispatch(articlesActions.addArticles(data[0].articles[i]));
       }
       setUserInfo(data[0].id);
     } else {

@@ -1,6 +1,6 @@
-import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import ArticlesContext from '../../store/ArticlesProvider';
+import { articlesActions } from '../../store/articles-slice';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
 import classes from './Bookmark.module.css';
 import useAuthentiation from '../../hooks/useAuthentication';
@@ -10,30 +10,32 @@ const BOOKMARK_ARTICLES_NUM = 20;
 const Bookmark = ({ article, source = '' }) => {
   const authCtx = useAuthentiation();
   const isLoggedIn = authCtx.isLoggedIn;
-  const articlesCtx = useContext(ArticlesContext);
-  const { articles } = articlesCtx;
+  const articles = useSelector((state) => state.articles.articles);
   let isBookmarked = articles.some((data) => data.url === article.url);
+  const dispatch = useDispatch();
 
   const clickHandler = (article) => {
-    if (articles.some((data) => data.url === article.url)) {  // remove
+    if (articles.some((data) => data.url === article.url)) {
+      // remove
       if (source === 'mypage') {
         if (
           window.confirm(
             'If you remove Bookmark, it will be removed from the list. Is everything ok?'
           )
         ) {
-          articlesCtx.removeArticles(article);
+          dispatch(articlesActions.removeArticles(article));
         }
       } else {
         setTimeout(() => {
-          articlesCtx.removeArticles(article);
+          dispatch(articlesActions.removeArticles(article));
           isBookmarked = false;
         }, 200);
       }
-    } else {  // add
+    } else {
+      // add
       if (articles.length !== BOOKMARK_ARTICLES_NUM) {
         setTimeout(() => {
-          articlesCtx.addArticles(article);
+          dispatch(articlesActions.addArticles(article));
           isBookmarked = true;
         }, 200);
       } else {
@@ -50,7 +52,11 @@ const Bookmark = ({ article, source = '' }) => {
       {isLoggedIn && (
         <>
           <TagIcon
-            style={{fill : isBookmarked ? 'rgb(251, 255, 0)' : 'rgba(255, 255, 255, 0.863)'}}
+            style={{
+              fill: isBookmarked
+                ? 'rgb(251, 255, 0)'
+                : 'rgba(255, 255, 255, 0.863)',
+            }}
             className={`${classes.tag} tag--${article.url}`}
             onClick={() => clickHandler(article)}
           />

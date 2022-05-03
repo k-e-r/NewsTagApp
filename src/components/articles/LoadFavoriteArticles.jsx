@@ -1,19 +1,18 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import ArticlesCards from './ArticlesCards';
-import ArticlesContext from '../../store/ArticlesProvider';
 import classes from './LoadFavoriteArticles.module.css';
 
 const LoadFavoriteArticles = () => {
   const [loadedArticles, setLoadedArticles] = useState([]);
-  const articlesCtx = useContext(ArticlesContext);
-  const { articles } = articlesCtx;
+  const articles = useSelector((state) => state.articles.articles);
 
   useEffect(() => {
     // LIFO
     setLoadedArticles(
       articles.map((x, idx, articles) => articles[articles.length - 1 - idx])
-      );
+    );
   }, [articles]);
 
   return (

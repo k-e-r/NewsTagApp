@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import classes from './LogoHeader.module.css';
 
 import { countryActions } from '../../../store/country-slice';
+import { articlesActions } from '../../../store/articles-slice';
 import useAuthentiation from '../../../hooks/useAuthentication';
-import ArticlesContext from '../../../store/ArticlesProvider';
 import countries from '../../../lib/countries_gnews.json';
 import { ReactComponent as Logo } from '../../../assets/bookmark.svg';
 import iconSet from '../../../assets/selection.json';
@@ -19,7 +19,6 @@ let openFlg = false;
 const LogoHeader = (props) => {
   const location = useLocation();
   const authCtx = useAuthentiation();
-  const articlesCtx = useContext(ArticlesContext);
   const { isLoggedIn, userEmail } = authCtx;
   const dispatch = useDispatch();
 
@@ -62,7 +61,7 @@ const LogoHeader = (props) => {
   };
 
   const logoutHandler = () => {
-    articlesCtx.clearArticles();
+    dispatch(articlesActions.clearArticles());
     authCtx.logout();
     return <Redirect to={'/'} />;
   };
