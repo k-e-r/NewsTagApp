@@ -1,6 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react';
-
-import ArticlesContext from './ArticlesProvider';
+import React, { useState, useEffect, useCallback } from 'react';
 
 let logoutTimer;
 
@@ -49,7 +47,6 @@ const retrieveStoredToken = () => {
 };
 
 export const AuthProvider = (props) => {
-  const articlesCtx = useContext(ArticlesContext);
   const tokenData = retrieveStoredToken();
   let initialToken;
   let initialLocalId;
@@ -70,7 +67,6 @@ export const AuthProvider = (props) => {
     setToken(null);
     setLocalId(null);
     setUserEmail(null);
-    articlesCtx.clearArticles();
     localStorage.removeItem('token');
     localStorage.removeItem('localId');
     localStorage.removeItem('userEmail');
