@@ -32,7 +32,7 @@ const LoadArticles = ({ category, country }) => {
       // もし日付が古いならData上書き指示
       if (!DataCheck(data[0]?.date)) {
         // PUT用にデータセット
-        setArticlesId(data[0].id);
+        setArticlesId(data[0]?.id);
         setError('overwriting');
       } else {
         setLoadedArticles(data[0]?.articles);
@@ -70,7 +70,7 @@ const LoadArticles = ({ category, country }) => {
           },
           attrData,
           articlesId
-        )
+        );
         setArticlesId('');
       } else {
         // POST
@@ -80,11 +80,16 @@ const LoadArticles = ({ category, country }) => {
             articles: loadedArticles,
           },
           attrData
-        )
+        );
       }
     }
   }
-  useAsyncEffect(setArticle, [registerDB, articlesId, loadedArticles, attrData]);
+  useAsyncEffect(setArticle, [
+    registerDB,
+    articlesId,
+    loadedArticles,
+    attrData,
+  ]);
 
   return (
     <section>
