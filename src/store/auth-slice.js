@@ -11,12 +11,11 @@ const authSlice = createSlice({
   },
   reducers: {
     loginCheck(state) {
-      console.log('login check');
-      state.token = localStorage.getItem('token');
-      state.localId = localStorage.getItem('localId');
-      state.userEmail = localStorage.getItem('userEmail');
-      state.logoutTimerId = localStorage.getItem('logoutTimerId');
-      state.isLoggedIn = !!localStorage.getItem('token');
+      state.token = sessionStorage.getItem('token');
+      state.localId = sessionStorage.getItem('localId');
+      state.userEmail = sessionStorage.getItem('userEmail');
+      state.logoutTimerId = sessionStorage.getItem('logoutTimerId');
+      state.isLoggedIn = !!sessionStorage.getItem('token');
     },
     login(state, action) {
       const authData = action.payload;
@@ -26,12 +25,10 @@ const authSlice = createSlice({
       state.logoutTimerId = authData.logoutTimerId;
       state.isLoggedIn = true;
 
-      localStorage.setItem('token', authData.token);
-      localStorage.setItem('localId', authData.localId);
-      localStorage.setItem('userEmail', authData.userEmail);
-      localStorage.setItem('logoutTimerId', authData.logoutTimerId);
-
       sessionStorage.setItem('token', authData.token);
+      sessionStorage.setItem('localId', authData.localId);
+      sessionStorage.setItem('userEmail', authData.userEmail);
+      sessionStorage.setItem('logoutTimerId', authData.logoutTimerId);
     },
     logout(state) {
       if (state.logoutTimerId) {
@@ -42,11 +39,6 @@ const authSlice = createSlice({
       state.userEmail = null;
       state.logoutTimerId = null;
       state.isLoggedIn = false;
-
-      localStorage.removeItem('token');
-      localStorage.removeItem('localId');
-      localStorage.removeItem('userEmail');
-      localStorage.removeItem('logoutTimerId');
 
       sessionStorage.clear();
     },
