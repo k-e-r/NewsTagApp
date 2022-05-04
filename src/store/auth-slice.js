@@ -10,6 +10,14 @@ const authSlice = createSlice({
     isLoggedIn: false,
   },
   reducers: {
+    loginCheck(state) {
+      console.log('login check');
+      state.token = localStorage.getItem('token');
+      state.localId = localStorage.getItem('localId');
+      state.userEmail = localStorage.getItem('userEmail');
+      state.logoutTimerId = localStorage.getItem('logoutTimerId');
+      state.isLoggedIn = !!localStorage.getItem('token');
+    },
     login(state, action) {
       const authData = action.payload;
       state.token = authData.token;
@@ -22,6 +30,8 @@ const authSlice = createSlice({
       localStorage.setItem('localId', authData.localId);
       localStorage.setItem('userEmail', authData.userEmail);
       localStorage.setItem('logoutTimerId', authData.logoutTimerId);
+
+      sessionStorage.setItem('token', authData.token);
     },
     logout(state) {
       if (state.logoutTimerId) {
@@ -37,6 +47,8 @@ const authSlice = createSlice({
       localStorage.removeItem('localId');
       localStorage.removeItem('userEmail');
       localStorage.removeItem('logoutTimerId');
+
+      sessionStorage.clear();
     },
   },
 });

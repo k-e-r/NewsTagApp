@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import MainHeader from './components/common/Header/MainHeader';
 import CategoryPage from './pages/CategoryPage';
@@ -7,8 +8,13 @@ import Login from './pages/Login';
 import Mypage from './pages/Mypage';
 import Footer from './components/common/Footer';
 import useSetBookmark from './hooks/useSetBookmark';
+import { authActions } from './store/auth-slice';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authActions.loginCheck());
+  }, []);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   useSetBookmark();
 
