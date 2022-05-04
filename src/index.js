@@ -4,19 +4,16 @@ import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './App';
-import { AuthProvider } from './store/AuthProvider';
 import ScrollToTop from './hooks/ScrollToTop';
 import store from './store/index';
 
 ReactDOM.render(
   <Provider store={store}>
-    <AuthProvider>
-      <BrowserRouter>
-        <ScrollToTop>
-          <App />
-        </ScrollToTop>
-      </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

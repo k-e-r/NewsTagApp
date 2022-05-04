@@ -3,13 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { articlesActions } from '../../store/articles-slice';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
 import classes from './Bookmark.module.css';
-import useAuthentiation from '../../hooks/useAuthentication';
 
 const BOOKMARK_ARTICLES_NUM = 20;
 
 const Bookmark = ({ article, source = '' }) => {
-  const authCtx = useAuthentiation();
-  const isLoggedIn = authCtx.isLoggedIn;
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const articles = useSelector((state) => state.articles.articles);
   let isBookmarked = articles.some((data) => data.url === article.url);
   const dispatch = useDispatch();

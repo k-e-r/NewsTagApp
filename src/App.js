@@ -1,6 +1,6 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import useAuthentiation from './hooks/useAuthentication';
 import MainHeader from './components/common/Header/MainHeader';
 import CategoryPage from './pages/CategoryPage';
 import Login from './pages/Login';
@@ -9,7 +9,7 @@ import Footer from './components/common/Footer';
 import SetBookmark from './hooks/SetBookmark';
 
 function App() {
-  const authCtx = useAuthentiation();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   SetBookmark();
 
   return (
@@ -25,12 +25,8 @@ function App() {
             component={CategoryPage}
             exact
           />
-          {!authCtx.isLoggedIn && (
-            <Route path='/login' component={Login} exact />
-          )}
-          {authCtx.isLoggedIn && (
-            <Route path='/mypage' component={Mypage} exact />
-          )}
+          {!isLoggedIn && <Route path='/login' component={Login} exact />}
+          {isLoggedIn && <Route path='/mypage' component={Mypage} exact />}
           <Route path='*'>
             <Redirect to='/categories/:category/:country' />
           </Route>

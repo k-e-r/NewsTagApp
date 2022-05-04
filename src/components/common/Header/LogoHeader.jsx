@@ -6,7 +6,7 @@ import classes from './LogoHeader.module.css';
 
 import { countryActions } from '../../../store/country-slice';
 import { articlesActions } from '../../../store/articles-slice';
-import useAuthentiation from '../../../hooks/useAuthentication';
+import { authActions } from '../../../store/auth-slice';
 import countries from '../../../lib/countries_gnews.json';
 import { ReactComponent as Logo } from '../../../assets/bookmark.svg';
 import iconSet from '../../../assets/selection.json';
@@ -18,8 +18,7 @@ let openFlg = false;
 
 const LogoHeader = (props) => {
   const location = useLocation();
-  const authCtx = useAuthentiation();
-  const { isLoggedIn, userEmail } = authCtx;
+  const { isLoggedIn, userEmail } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const [country, setCountry] = useState(
@@ -62,7 +61,7 @@ const LogoHeader = (props) => {
 
   const logoutHandler = () => {
     dispatch(articlesActions.clearArticles());
-    authCtx.logout();
+    dispatch(authActions.logout());
     return <Redirect to={'/'} />;
   };
 

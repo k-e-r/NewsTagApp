@@ -1,15 +1,24 @@
 import { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-import useAuthentiation from '../hooks/useAuthentication';
+import { authActions } from '../store/auth-slice';
 import classes from './Login.module.css';
 
 const apikey = process.env['REACT_APP_AUTH_APIKEY'];
 
+const calculateRemainingTime = (expirationTime) => {
+  const currentTime = new Date().getTime();
+  const adjExpirationTime = new Date(expirationTime).getTime();
+
+  const remainingDuration = adjExpirationTime - currentTime;
+
+  return remainingDuration;
+};
+
 const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
-  const authCtx = useAuthentiation();
+  const dispatch = useDispatch();
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,11 +69,19 @@ const Login = () => {
         const expirationTime = new Date(
           new Date().getTime() + +data.expiresIn * 1000
         );
-        authCtx.login(
-          data.idToken,
-          expirationTime.toISOString(),
-          data.localId,
-          data.email
+        console.log(expirationTime);
+        const remainingTime = calculateRemainingTime(
+          expirationTime.toISOString()
+        );
+        dispatch(
+          authActions.login({
+            token: data.idToken,
+            localId: data.localId,
+            userEmail: data.email,
+            logoutTimerId: setTimeout(() => {
+              dispatch(authActions.logout());
+            }, remainingTime),
+          })
         );
       })
       .catch((err) => {
