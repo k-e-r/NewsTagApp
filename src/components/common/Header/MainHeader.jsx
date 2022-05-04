@@ -1,6 +1,7 @@
-import LogoHeader from './LogoHeader';
 import classes from './MainHeader.module.css';
+
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
+import LogoHeader from './LogoHeader';
 import WideHeader from './WideHeader';
 import NarrowHeader from './NarrowHeader';
 

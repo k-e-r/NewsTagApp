@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import notImage from '../../assets/image-not-found-scaled.jpg';
 import classes from './Articles.module.css';
+import notImage from '../../assets/image-not-found-scaled.jpg';
 
 const LazyImage = ({ article }) => {
   const [loading, setLoading] = useState(false);
@@ -40,10 +40,7 @@ const LazyImage = ({ article }) => {
             />
           </>
         ) : (
-          <img
-            src={notImage}
-            alt={article.title}
-          />
+          <img src={notImage} alt={article.title} />
         )}
       </div>
     </>

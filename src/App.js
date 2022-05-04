@@ -6,11 +6,11 @@ import CategoryPage from './pages/CategoryPage';
 import Login from './pages/Login';
 import Mypage from './pages/Mypage';
 import Footer from './components/common/Footer';
-import SetBookmark from './hooks/SetBookmark';
+import useSetBookmark from './hooks/useSetBookmark';
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  SetBookmark();
+  useSetBookmark();
 
   return (
     <>

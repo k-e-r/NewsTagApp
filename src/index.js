@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import './index.css';
 import App from './App';
-import ScrollToTop from './hooks/ScrollToTop';
+import ScrollToTop from './pages/ScrollToTop';
 import store from './store/index';
 
 ReactDOM.render(

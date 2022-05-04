@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import ArticlesCards from './ArticlesCards';
 import classes from './LoadFavoriteArticles.module.css';
+
+import ArticlesCards from './ArticlesCards';
 
 const LoadFavoriteArticles = () => {
   const [loadedArticles, setLoadedArticles] = useState([]);

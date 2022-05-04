@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 
+import classes from './Bookmark.module.css';
+
 import { articlesActions } from '../../store/articles-slice';
 import { ReactComponent as TagIcon } from '../../assets/bookmark.svg';
-import classes from './Bookmark.module.css';
 
 const BOOKMARK_ARTICLES_NUM = 20;
 

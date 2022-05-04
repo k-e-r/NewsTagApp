@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import IcomoonReact from 'icomoon-react';
 
 import classes from './LogoHeader.module.css';
 
 import { countryActions } from '../../../store/country-slice';
 import { articlesActions } from '../../../store/articles-slice';
 import { authActions } from '../../../store/auth-slice';
-import countries from '../../../lib/countries_gnews.json';
 import { ReactComponent as Logo } from '../../../assets/bookmark.svg';
-import iconSet from '../../../assets/selection.json';
-import IcomoonReact from 'icomoon-react';
 import { ReactComponent as ChevronDown } from '../../../assets/chevron-down.svg';
 import { ReactComponent as ChevronUp } from '../../../assets/chevron-up.svg';
+import countries from '../../../lib/countries_gnews.json';
+import iconSet from '../../../assets/selection.json';
 
 let openFlg = false;
 

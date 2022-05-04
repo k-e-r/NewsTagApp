@@ -69,7 +69,6 @@ const Login = () => {
         const expirationTime = new Date(
           new Date().getTime() + +data.expiresIn * 1000
         );
-        console.log(expirationTime);
         const remainingTime = calculateRemainingTime(
           expirationTime.toISOString()
         );

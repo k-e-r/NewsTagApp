@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSingleUser, addUserBook, putUserBook } from '../lib/api';
 import { articlesActions } from '../store/articles-slice';
 
-const SetBookmark = () => {
+const useSetBookmark = () => {
   const localId = useSelector((state) => state.auth.localId);
   const articles = useSelector((state) => state.articles.articles);
   const [userInfo, setUserInfo] = useState('');
@@ -44,4 +44,4 @@ const SetBookmark = () => {
   useAsyncEffect(putUserArticles, [articles]);
 };
 
-export default SetBookmark;
+export default useSetBookmark;
