@@ -32,7 +32,6 @@ const LazyImage = ({ article }) => {
           <>
             {!loading && <Skeleton />}
             <img
-              width={`${!loading ? '0%' : '100%'}`}
               onLoad={() => imageLoadedHandler(article.image)}
               onError={() => imageErrorHandler(article.image)}
               id={`img--${article.image}`}
