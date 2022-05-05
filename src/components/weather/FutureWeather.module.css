@@ -1,0 +1,60 @@
+.hourlyBlock {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: space-evenly;
+}
+
+.hourlyIcon {
+  height: 2rem;
+  fill: rgb(147, 147, 147);
+}
+
+.dailyIcon {
+  width: 2rem;
+  fill: rgb(147, 147, 147);
+}
+
+.hourlyDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time {
+  font-size: 0.7rem;
+  color: rgb(121, 121, 121);
+}
+
+.dayClass {
+  width: 32%;
+  text-align: justify;
+  font-size: 0.9rem;
+}
+
+.maxTemp {
+  width: 8%;
+}
+
+.minTemp {
+  color: #ccc;
+  width: 8%;
+}
+
+.dailyBlock {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  text-align: right;
+}
+
+.dailyDetail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(121, 121, 121);
+  margin-top: 1.3rem;
+  margin-right: 1rem;
+}
+
+@media only screen and (max-width: 1100px) {
+}

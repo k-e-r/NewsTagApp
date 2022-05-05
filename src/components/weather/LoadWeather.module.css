@@ -1,0 +1,6 @@
+.weatherBlock {
+  margin: 1rem 0 1rem 3%;
+  width: 20rem;
+  height: 100%;
+  border: 0.05rem solid #ccc;
+}

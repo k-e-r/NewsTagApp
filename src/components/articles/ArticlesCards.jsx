@@ -6,7 +6,7 @@ import classes from './Articles.module.css';
 
 const ArticlesCards = ({ articles, source = '' }) => {
   return (
-    <ul className={classes.articles}>
+    <ul>
       {!articles?.length && <ArticleLoading />}
       {articles?.length &&
         articles.map((article) => (

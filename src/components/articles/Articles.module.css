@@ -1,10 +1,10 @@
 .articles {
-  margin: auto;
+  /* margin: auto; */
   list-style: none;
 
   display: flex;
   flex-direction: column;
-  width: min(100%, 40rem);
+  width: min(100%, 48rem);
 }
 
 .article {
@@ -25,6 +25,12 @@
 
 .article:first-child .imageContainer {
   width: 100%;
+  height: 30rem;
+}
+
+.imageContainer span {
+  width: 100%;
+  height: 100%;
 }
 
 .article:first-child .text {
@@ -34,16 +40,15 @@
 .imageContainer {
   display: flex;
   width: 50%;
+  height: 19rem;
   overflow: hidden;
   align-items: center;
 }
 
 .article img {
-  width: 100%;
   object-fit: cover;
   transition-duration: 0.3s;
   object-position: center 30%;
-  /* height: 22rem; */
 }
 
 .articles li:first-child img {

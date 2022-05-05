@@ -149,3 +149,31 @@ export const putUserBook = async (bookData, usrId, registerId) => {
 
   return null;
 };
+
+// for weather
+const weatherApiKey = process.env['REACT_APP_WEATHER_APIKEY'];
+export const oneCallWeather = async (lat, lon) => {
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${weatherApiKey}`
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Could not fetch categories.');
+  }
+
+  return data;
+};
+
+export const currentWeather = async (lat, lon) => {
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${weatherApiKey}`
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Could not fetch categories.');
+  }
+
+  return data;
+};

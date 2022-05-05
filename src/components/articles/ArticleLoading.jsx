@@ -11,7 +11,7 @@ const ArticleLoading = () => {
       <li className={classes.article} key={i}>
         <a href='/'>
           <div className={classes.imageContainer}>
-            <Skeleton height={420} width={1000} />
+            <Skeleton />
           </div>
           <div className={classes.text}>
             <h3>
