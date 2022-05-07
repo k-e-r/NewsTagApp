@@ -17,11 +17,9 @@ const LoadFavoriteArticles = () => {
   }, [articles]);
 
   return (
-    <section>
+    <>
       {loadedArticles.length !== 0 && (
-        <>
-          <ArticlesCards articles={loadedArticles} source='mypage' />
-        </>
+        <ArticlesCards articles={loadedArticles} source='mypage' />
       )}
       {loadedArticles.length === 0 && (
         <>
@@ -31,7 +29,7 @@ const LoadFavoriteArticles = () => {
           <p className={classes.mypage}>Please bookmark some pages you like.</p>
         </>
       )}
-    </section>
+    </>
   );
 };
 

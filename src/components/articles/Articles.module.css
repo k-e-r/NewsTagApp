@@ -1,10 +1,18 @@
 .articles {
-  /* margin: auto; */
   list-style: none;
 
   display: flex;
   flex-direction: column;
   width: min(100%, 48rem);
+}
+
+.articles li:first-child img {
+  height: 30rem;
+  margin: auto;
+}
+
+.articles li:not(:first-child) img {
+  height: 19rem;
 }
 
 .article {
@@ -49,14 +57,7 @@
   object-fit: cover;
   transition-duration: 0.3s;
   object-position: center 30%;
-}
-
-.articles li:first-child img {
-  height: 30rem;
-}
-
-.articles li:not(:first-child) img {
-  height: 19rem;
+  width: 100%;
 }
 
 .article a:hover img {

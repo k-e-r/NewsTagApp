@@ -14,14 +14,7 @@ const dayList = [
   'Saturday',
 ];
 
-const FutureDailyWeather = ({
-  loading,
-  dailyImgCode,
-  day,
-  unit,
-  maxTmp,
-  minTmp,
-}) => {
+const FutureDailyWeather = ({ loading, dailyImgCode, day, maxTmp, minTmp }) => {
   return (
     <>
       <div className={classes.dailyBlock}>
@@ -34,18 +27,8 @@ const FutureDailyWeather = ({
                 iconSet={iconSet}
                 icon={img}
               />
-              {unit && (
-                <>
-                  <p className={classes.maxTemp}>{maxTmp[idx]}</p>
-                  <p className={classes.minTemp}>{minTmp[idx]}</p>
-                </>
-              )}
-              {!unit && (
-                <>
-                  <p className={classes.maxTemp}>{maxTmp[idx] + 32}</p>
-                  <p className={classes.minTemp}>{minTmp[idx] + 32}</p>
-                </>
-              )}
+              <p className={classes.maxTemp}>{maxTmp[idx]}</p>
+              <p className={classes.minTemp}>{minTmp[idx]}</p>
             </div>
           ))}
       </div>

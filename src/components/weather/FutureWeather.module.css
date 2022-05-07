@@ -57,4 +57,17 @@
 }
 
 @media only screen and (max-width: 1100px) {
+  .dayClass {
+    width: 32%;
+    text-align: justify;
+    font-size: 0.8rem;
+  }
+
+  .maxTemp {
+    font-size: 0.8rem;
+  }
+
+  .minTemp {
+    font-size: 0.8rem;
+  }
 }

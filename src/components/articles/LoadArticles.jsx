@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
 
-import classes from './Articles.module.css';
-
 import {
   getNews,
   getSingleArticle,
@@ -94,9 +92,9 @@ const LoadArticles = ({ category, country }) => {
   ]);
 
   return (
-    <section className={classes.articles}>
+    <>
       <ArticlesCards articles={loadedArticles} />
-    </section>
+    </>
   );
 };
 

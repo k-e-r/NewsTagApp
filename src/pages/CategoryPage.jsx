@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import LoadArticles from '../components/articles/LoadArticles';
 import LoadWeather from '../components/weather/LoadWeather';
-import useWindowDimensions from '../hooks/useWindowDimensions';
 
 import classes from './CategoryPage.module.css';
 
@@ -11,7 +10,6 @@ import countries from '../lib/countries_gnews.json';
 import categories from '../lib/pages_gnews.json';
 
 const CategoryPage = () => {
-  const { width } = useWindowDimensions();
   const params = useParams();
   const country = useSelector((state) => state.country.country);
   const countryResult = countries.some((data) => data.code === params.country);
@@ -32,7 +30,7 @@ const CategoryPage = () => {
   return (
     <section className={classes.layout}>
       <LoadArticles category={category} country={params.country} />
-      {width > 900 && <LoadWeather country={params.country} />}
+      <LoadWeather country={params.country} />
     </section>
   );
 };
