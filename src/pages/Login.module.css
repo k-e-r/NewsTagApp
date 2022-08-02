@@ -3,7 +3,7 @@
 
   display: flex;
   flex-direction: column;
-  width: min(50%, 40rem);
+  width: min(50%, 20rem);
   color: rgb(90, 90, 90);
   font-size: 1.2rem;
 }
@@ -12,6 +12,16 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  position: relative;
+}
+
+.label {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.4rem;
 }
 
 .control > * {
@@ -19,8 +29,25 @@
 }
 
 .control input {
-  height: 1.5rem;
+  height: 58px;
   border: 1px solid rgb(90, 90, 90);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 30.5px 14px 11.5px;
+  font-size: 1rem;
+}
+
+.eyeIcon {
+  position: absolute;
+  z-index: 10;
+  top: 1.1rem;
+  right: 0;
+  width: 3.5rem;
+  fill: rgb(90, 90, 90);
+  cursor: pointer;
 }
 
 .actions {
