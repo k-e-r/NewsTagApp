@@ -2,7 +2,7 @@
 On this site, you can check various category news from different countries, and after creating an account, you can register your favorite articles.
 
 ## website URL
-https://www.kestudies.com/categories/breaking-news/us</br>
+https://newstagapp2.pages.dev/categories/general/us</br>
 ### test account</br>
  * email: test2@test.com</br>
  * pass: 1234567</br>
