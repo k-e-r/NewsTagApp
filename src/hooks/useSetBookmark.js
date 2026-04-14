@@ -13,24 +13,26 @@ const useSetBookmark = () => {
 
   // initで登録データcheck & set
   async function loadUserArticles() {
-    const data = await getSingleUser(localId);
-    // user登録済みか確認
-    if (data[0]?.articles) {
-      // 登録された記事読み込み
-      for (let i = 0; i < data[0].articles.length; i++) {
-        // 登録された記事をContextに保存
-        dispatch(articlesActions.addArticles(data[0].articles[i]));
+    if (localId !== null && localId.length !== 0) {
+      const data = await getSingleUser(localId);
+      // user登録済みか確認
+      if (data[0]?.articles) {
+        // 登録された記事読み込み
+        for (let i = 0; i < data[0].articles.length; i++) {
+          // 登録された記事をContextに保存
+          dispatch(articlesActions.addArticles(data[0].articles[i]));
+        }
+        setUserInfo(data[0].id);
+      } else {
+        // user登録
+        await addUserBook(
+          {
+            data: localId,
+            articles: [],
+          },
+          localId
+        );
       }
-      setUserInfo(data[0].id);
-    } else {
-      // user登録
-      await addUserBook(
-        {
-          data: localId,
-          articles: [],
-        },
-        localId
-      );
     }
   }
   useAsyncEffect(loadUserArticles, [localId]);
